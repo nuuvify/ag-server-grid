@@ -1,0 +1,28 @@
+<section class="table__body">
+  <table>
+    <thead>
+      <tr>
+        <th scope="col" *ngFor="let header of columnDefs"
+          [style.minWidth.px]="header.minWidth != undefined ? header.minWidth : 50"
+          [style.maxWidth.px]="header.maxWidth != undefined ? header.maxWidth : 50">{{ header.field }}</th>
+        <th *ngIf="editable">
+          Editar
+        </th>
+        <th *ngIf="deletable">
+          Excluir
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of rowData" (dblclick)="getRow(item)">
+        <ng-container *ngFor="let h of columnDefs">
+          <td>{{ item[h.field] | dateOrString }}</td>
+        </ng-container>
+        <td *ngIf="editable"><button (click)="getRow(item)">Editar</button></td>
+        <td *ngIf="deletable"><button (click)="getRow(item)">Excluir</button></td>
+      </tr>
+    </tbody>
+  </table>
+  <lib-pagination-server *ngIf="pagination" [pager]="pager" [configPag]="configPag" (paginachange)="listagem($event)"
+    (next)="nextLevel($event)" (prev)="prevLevel($event)" (setPage)="setPagination($event)"></lib-pagination-server>
+</section>
