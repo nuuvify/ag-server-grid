@@ -29,7 +29,7 @@ export class PaginationServerComponent {
     this.setPagination(this.configPag.currentPageNumber);
   }
 
-  trackByFn(index: any, item: any) {
+  trackByFn(item: any): number {
     return item;
   }
 
@@ -49,7 +49,7 @@ export class PaginationServerComponent {
   }
 
   //setPagination() -> Mostra os botões de paginação
-  setPagination(pageNo: number) {
+  setPagination(pageNo: number): void {
     this.configPag.currentPageNumber = pageNo;
     this.pager = this.pagerService.getPager(
       this.configPag.totalRecordsCount,

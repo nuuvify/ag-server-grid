@@ -3,6 +3,8 @@
     <thead>
       <tr>
         <th scope="col" *ngFor="let header of columnDefs"
+          (click)="sortBy(header.field)"
+          onKeyDown="sortBy(header.field)"
           [style.minWidth.px]="header.minWidth != undefined ? header.minWidth : 50"
           [style.maxWidth.px]="header.maxWidth != undefined ? header.maxWidth : 50">{{ header.field }}</th>
         <th *ngIf="editable">

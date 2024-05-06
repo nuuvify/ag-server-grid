@@ -15,6 +15,9 @@ import { DateOrStringPipe } from './pipes/pipe.dateFormat';
   providers: [PagerService, DatePipe]
 })
 export class DatatableServerComponent {
+  sortOrder = 1;
+  sortedColumn!: string;
+  sortProperty!: string;
   @Input()  public pager: any = {};
   @Input()  public rowData: any = [];
   @Input()  public columnDefs!: ColDef[];
@@ -28,8 +31,6 @@ export class DatatableServerComponent {
   @Output() public paginachange: EventEmitter<any> = new EventEmitter();
   @Output() public getRowSelect: EventEmitter<Object> = new EventEmitter();
 
-
-  /* Métodos de Paginação */
   listagem(pageNo: number): void {
     this.paginachange.emit(pageNo);
   }
@@ -45,9 +46,30 @@ export class DatatableServerComponent {
   setPagination(page: Object): void {
     this.setPage.emit(page);
   }
-  /* Fim dos métodos de Paginação */
 
-  getRow(bodyJson: any) {
+  getRow(bodyJson: any): void {
     this.getRowSelect.emit(bodyJson);
+  }
+
+  sortBy(property: string): void {
+    this.sortOrder = property === this.sortProperty ? (this.sortOrder * -1) : 1;
+    this.sortProperty = property;
+    this.rowData = [...this.rowData.sort((a: any, b: any) => {
+      let result = 0;
+      if (a[property] < b[property]) {
+        result = -1;
+      }
+      if (a[property] > b[property]) {
+        result = 1;
+      }
+      return result * this.sortOrder;
+    })];
+  }
+
+  sortIcon(property: string): string {
+    if (property === this.sortProperty) {
+      return this.sortOrder === 1 ? '⭡' : '⭣';
+    }
+    return '';
   }
 }
