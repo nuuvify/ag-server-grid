@@ -1,3 +1,3 @@
-# Comando para gerar a pasta dist
+# Comando para gerar a pasta dist:
 TODO: npm run build
 
