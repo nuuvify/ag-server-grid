@@ -4,8 +4,9 @@ import { Inject, LOCALE_ID, Pipe, PipeTransform } from "@angular/core";
 export const isDate = (value: string) => {
   const regexData = /^\d{4}-\d{2}-\d{2}$/;
   const regexDataIso = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z$/;
+  const regexDatesAPI = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d+$/;
 
-  if (typeof value === 'string' && (regexData.test(value) || regexDataIso.test(value))) {
+  if (typeof value === 'string' && (regexData.test(value) || regexDataIso.test(value) || regexDatesAPI.test(value))) {
     return true;
   } else {
     return false;

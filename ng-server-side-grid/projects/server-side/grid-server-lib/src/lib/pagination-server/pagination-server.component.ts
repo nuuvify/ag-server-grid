@@ -5,7 +5,7 @@ import { ConfigPagination } from '../models/configPagination.model';
 import { PagerService } from './service/pager.service';
 
 @Component({
-  selector: 'lib-pagination-server',
+  selector: 'pagination-server',
   templateUrl: './pagination-server.component.html',
   styleUrls: ['./pagination-server.component.css'],
   standalone: true,

@@ -25,6 +25,6 @@
       </tr>
     </tbody>
   </table>
-  <lib-pagination-server *ngIf="pagination" [pager]="pager" [configPag]="configPag" (paginachange)="listagem($event)"
-    (next)="nextLevel($event)" (prev)="prevLevel($event)" (setPage)="setPagination($event)"></lib-pagination-server>
+  <pagination-server *ngIf="pagination" [pager]="pager" [configPag]="configPag" (paginachange)="listagem($event)"
+    (next)="nextLevel($event)" (prev)="prevLevel($event)" (setPage)="setPagination($event)"></pagination-server>
 </section>

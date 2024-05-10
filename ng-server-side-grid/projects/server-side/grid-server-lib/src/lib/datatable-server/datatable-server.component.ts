@@ -7,7 +7,7 @@ import { PagerService } from '../pagination-server/service/pager.service';
 import { DateOrStringPipe } from './pipes/pipe.dateFormat';
 
 @Component({
-  selector: 'lib-datatable-server',
+  selector: 'datatable-server',
   templateUrl: './datatable-server.component.html',
   styleUrls: ['./datatable-server.component.css'],
   standalone:true,
