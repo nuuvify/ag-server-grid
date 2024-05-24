@@ -1,12 +1,12 @@
 <section class="table__body">
   <table>
-    <thead>
+    <thead id="cat-table-header">
       <tr>
         <th scope="col" *ngFor="let header of columnDefs"
           (click)="sortBy(header.field)"
           onKeyDown="sortBy(header.field)"
           [style.minWidth.px]="header.minWidth != undefined ? header.minWidth : 50"
-          [style.maxWidth.px]="header.maxWidth != undefined ? header.maxWidth : 50">{{ header.field }}</th>
+          [style.maxWidth.px]="header.maxWidth != undefined ? header.maxWidth : 50">{{ header.headerName!= undefined ? header.headerName : header.field  }}</th>
         <th *ngIf="editable">
           Editar
         </th>
@@ -15,7 +15,7 @@
         </th>
       </tr>
     </thead>
-    <tbody>
+    <tbody id="cat-table-body">
       <tr *ngFor="let item of rowData" (dblclick)="getRow(item)">
         <ng-container *ngFor="let h of columnDefs">
           <td>{{ item[h.field] | dateOrString }}</td>
