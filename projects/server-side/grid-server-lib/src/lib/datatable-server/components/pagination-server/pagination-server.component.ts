@@ -1,7 +1,7 @@
 import { CommonModule, NgFor } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { ConfigPagination } from '../models/configPagination.model';
+import { ConfigPagination } from '../../../models/configPagination.model';
 import { PagerService } from './service/pager.service';
 
 @Component({

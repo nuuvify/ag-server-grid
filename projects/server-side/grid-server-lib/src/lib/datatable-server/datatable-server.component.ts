@@ -2,8 +2,8 @@ import { CommonModule, DatePipe, NgFor } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ColDef } from '../models/colDef.model';
 import { ConfigPagination } from '../models/configPagination.model';
-import { PaginationServerComponent } from '../pagination-server/pagination-server.component';
-import { PagerService } from '../pagination-server/service/pager.service';
+import { PaginationServerComponent } from './components/pagination-server/pagination-server.component';
+import { PagerService } from './components/pagination-server/service/pager.service';
 import { DateOrStringPipe } from './pipes/pipe.dateFormat';
 
 @Component({
