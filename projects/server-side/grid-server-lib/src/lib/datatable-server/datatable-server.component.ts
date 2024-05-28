@@ -5,26 +5,28 @@ import { ConfigPagination } from '../models/configPagination.model';
 import { PaginationServerComponent } from './components/pagination-server/pagination-server.component';
 import { PagerService } from './components/pagination-server/service/pager.service';
 import { DateOrStringPipe } from './pipes/pipe.dateFormat';
+import { SearchFilterPipe } from './pipes/pipe.searchFilter';
 
 @Component({
   selector: 'datatable-server',
   templateUrl: './datatable-server.component.html',
   styleUrls: ['./datatable-server.component.css'],
-  standalone:true,
-  imports: [NgFor, CommonModule, PaginationServerComponent, DateOrStringPipe],
+  standalone: true,
+  imports: [NgFor, CommonModule, PaginationServerComponent, DateOrStringPipe, SearchFilterPipe],
   providers: [PagerService, DatePipe]
 })
 export class DatatableServerComponent {
   sortOrder = 1;
   sortedColumn!: string;
   sortProperty!: string;
-  @Input()  public pager: any = {};
-  @Input()  public rowData: any = [];
-  @Input()  public columnDefs!: ColDef[];
-  @Input()  public editable!: boolean;
-  @Input()  public deletable!: boolean;
-  @Input()  public pagination: boolean = false;
-  @Input()  public configPag!: ConfigPagination;
+  @Input() public pager: any = {};
+  @Input() public rowData: any = [];
+  @Input() public columnDefs!: ColDef[];
+  @Input() public editable!: boolean;
+  @Input() public deletable!: boolean;
+  @Input() public searchText!: string;
+  @Input() public pagination: boolean = false;
+  @Input() public configPag!: ConfigPagination;
   @Output() public next: EventEmitter<number> = new EventEmitter();
   @Output() public prev: EventEmitter<number> = new EventEmitter();
   @Output() public setPage: EventEmitter<any> = new EventEmitter();
