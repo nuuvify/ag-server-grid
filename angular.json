@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "@ag-server-grid": {
+    "@ag-server-grid/ag-server-grid": {
       "projectType": "library",
       "root": "projects/ag-server-grid",
       "sourceRoot": "projects/ag-server-grid/src",
