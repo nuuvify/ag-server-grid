@@ -3,8 +3,8 @@
   "compileOnSave": false,
   "compilerOptions": {
     "paths": {
-      "@server-side/grid-server-lib": [
-        "dist/server-side/grid-server-lib"
+      "@ag-server-grid": [
+        "dist/ag-server-grid"
       ]
     },
     "baseUrl": "./",

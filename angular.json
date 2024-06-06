@@ -3,23 +3,23 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "@server-side/grid-server-lib": {
+    "@ag-server-grid": {
       "projectType": "library",
-      "root": "projects/server-side/grid-server-lib",
-      "sourceRoot": "projects/server-side/grid-server-lib/src",
+      "root": "projects/ag-server-grid",
+      "sourceRoot": "projects/ag-server-grid/src",
       "prefix": "lib",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
-            "project": "projects/server-side/grid-server-lib/ng-package.json"
+            "project": "projects/ag-server-grid/ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "projects/server-side/grid-server-lib/tsconfig.lib.prod.json"
+              "tsConfig": "projects/ag-server-grid/tsconfig.lib.prod.json"
             },
             "development": {
-              "tsConfig": "projects/server-side/grid-server-lib/tsconfig.lib.json"
+              "tsConfig": "projects/ag-server-grid/tsconfig.lib.json"
             }
           },
           "defaultConfiguration": "production"
@@ -27,7 +27,7 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "tsConfig": "projects/server-side/grid-server-lib/tsconfig.spec.json",
+            "tsConfig": "projects/ag-server-grid/tsconfig.spec.json",
             "polyfills": [
               "zone.js",
               "zone.js/testing"
