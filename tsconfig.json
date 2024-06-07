@@ -3,9 +3,7 @@
   "compileOnSave": false,
   "compilerOptions": {
     "paths": {
-      "@ag-server-grid": [
-        "dist/ag-server-grid"
-      ]
+      "ag-server-grid": ["dist/ag-server-grid/ag-server-grid", "dist/ag-server-grid"]
     },
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",

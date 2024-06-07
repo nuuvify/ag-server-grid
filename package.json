@@ -1,12 +1,17 @@
 {
-  "name": "agServerGid",
-  "version": "1.0.0",
+  "name": "ag-server-grid",
+  "version": "0.0.1",
+  "license": "Apache-2.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
+  },
+  "engines": {
+    "node": "^16.14.2",
+    "npm": "^8.5.0"
   },
   "private": true,
   "dependencies": {
