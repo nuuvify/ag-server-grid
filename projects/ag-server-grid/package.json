@@ -1,5 +1,5 @@
 {
-  "name": "@ag-server-grid",
+  "name": "ag-server-grid",
   "version": "0.0.1",
   "peerDependencies": {
     "@angular/common": "^16.0.0",
