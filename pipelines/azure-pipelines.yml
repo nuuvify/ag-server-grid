@@ -34,7 +34,7 @@ stages:
     
     steps:
     
-    - template: pipeline-templates/build-angular-npm.yml@templates
+    - template: pipeline-templates/build-angular.yml@templates
       parameters:
         reposytoryWork: 'nuuvify/ag-server-grid'
 
