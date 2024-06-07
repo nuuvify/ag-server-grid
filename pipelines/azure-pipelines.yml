@@ -38,4 +38,4 @@ stages:
       parameters:
         reposytoryWork: 'nuuvify/ag-server-grid'
 
-- template: pipeline-templates/deploy-common-angular-npm.yml@templates
+#- template: pipeline-templates/deploy-common-angular-npm.yml@templates
