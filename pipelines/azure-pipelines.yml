@@ -1,0 +1,41 @@
+resources:
+  repositories:
+    - repository: templates
+      type: git
+      name: SharedKernel/pipelines-store
+      endpoint: SharedProjects-Repos
+
+trigger:
+  branches:
+    include:
+    - qas
+    - main
+pr:
+  branches:
+    include:
+    - refs/*
+    
+
+variables:
+  - template: variables/global.yml@templates
+
+
+stages: 
+
+- stage: 'Build'
+  displayName: 'Build Projects'
+        
+  jobs:
+  - job: 'Build_And_Package'
+    displayName: 'Build & package artifacts'
+
+    pool:
+      vmImage: $(vmImageName)
+    
+    steps:
+    
+    - template: pipeline-templates/build-angular.yml@templates
+      parameters:
+        reposytoryWork: 'ag-server-grid'
+
+- template: pipeline-templates/deploy-common-angular-npm.yml@templates

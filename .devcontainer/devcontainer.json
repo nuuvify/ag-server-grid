@@ -1,0 +1,72 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/dotnet
+{
+	"name": "Angular",
+	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+	"build": {
+		"context": ".",
+		"dockerfile": "Dockerfile",
+		"args": {
+			"PathApp": "${containerWorkspaceFolder}"
+		}
+	},
+
+	"features": {
+		"ghcr.io/devcontainers/features/common-utils:2": {
+			"installZsh": true,
+			"installOhMyZsh": true,
+			"upgradePackages": true
+		},
+		"ghcr.io/devcontainers-contrib/features/zsh-plugins:0": {
+			"omzPlugins": "https://github.com/zsh-users/zsh-autosuggestions"
+		},
+		"ghcr.io/stuartleeks/dev-container-features/shell-history:0": {}
+
+	},
+
+	"mounts": [
+		// Se estiver utilizando Linux ou WSL2 desmarque essas linhas
+		"source=/${localEnv:HOME}/.npmrc,target=/root/.npmrc,type=bind,consistency=cached",
+		"source=/${localEnv:HOME}/.ssh,target=/root/.ssh,type=bind,consistency=cached",
+		"source=/${localEnv:HOME}/.microsoft/usersecrets,target=/root/.microsoft/usersecrets,type=bind,consistency=cached"
+
+		// Se estiver usando Windows ou Docker Desktop, desmarque essas linhas
+		// "source=${localEnv:HOME}\\.npmrc,target=/root/.npmrc,type=bind,consistency=cached",
+		// "source=${localEnv:APPDATA}\\Microsoft\\UserSecrets,target=/root/.microsoft/usersecrets,type=bind,consistency=cached"
+	],
+
+	"containerEnv": {
+		"WORKFOLDER": "${containerWorkspaceFolder}"
+	},
+
+
+	// Use 'postCreateCommand' to run commands after the container is created.
+	"postCreateCommand": "./.devcontainer/custom-install.sh",
+
+	// Configure tool-specific properties.
+	"customizations": {
+		"vscode": {
+			"settings": {
+				"terminal.integrated.fontFamily": "MesloLGM Nerd Font", // ou "MesloLGM NF"
+				// "terminal.integrated.fontFamily": "MesloLGM NF",
+				"terminal.integrated.defaultProfile.linux": "zsh"
+			},
+			"extensions": [
+        "loiane.angular-extension-pack",
+				"ms-vscode.powershell",
+				"Gruntfuggly.todo-tree",
+				"yzhang.markdown-all-in-one",
+				"VisualStudioExptTeam.intellicode-api-usage-examples",
+				"ms-vsliveshare.vsliveshare",
+				"eamodio.gitlens",
+				"ms-azuretools.vscode-docker",
+				"ecmel.vscode-html-css",
+				"k--kato.docomment",
+				"EditorConfig.EditorConfig",
+				"christian-kohler.path-intellisense",
+				"quicktype.quicktype"
+			]
+		}
+	}
+
+}
