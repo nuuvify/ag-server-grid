@@ -37,5 +37,6 @@ stages:
     - template: pipeline-templates/build-angular.yml@templates
       parameters:
         reposytoryWork: 'ag-server-grid'
+        projectWork: '/projects/ag-server-grid'
 
 - template: pipeline-templates/deploy-common-angular-npm.yml@templates
