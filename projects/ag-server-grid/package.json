@@ -2,6 +2,7 @@
   "name": "ag-server-grid",
   "version": "0.0.3",
   "license": "Apache-2.0",
+  "description": "Data Grid for Angular / TypeScript, with several customizable features and server side pagination.",
   "engines": {
     "node": "^16.14.2",
     "npm": "^8.5.0"
@@ -13,5 +14,36 @@
   "dependencies": {
     "tslib": "^2.3.0"
   },
-  "sideEffects": false
+  "sideEffects": false,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nuuvify/ag-server-grid.git"
+  },
+  "keywords": [
+    "ag",
+    "ag-grid",
+    "ag-servergrid",
+    "datagrid",
+    "data-grid",
+    "datatable",
+    "data-table",
+    "grid",
+    "table",
+    "server-side",
+    "pagination",
+    "angular",
+    "angular-component"
+  ],
+  "author": "Nuuvify Soluctions <suporte@nuuve.com.br>",
+  "bugs": {
+    "url": "https://github.com/nuuvify/ag-server-grid/issues"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie >= 0",
+    "not ie_mob >= 0",
+    "not blackberry > 0"
+  ],
+  "homepage": "https://github.com/nuuvify/ag-server-grid/wiki"
 }
