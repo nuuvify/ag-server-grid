@@ -12,8 +12,8 @@ import { PagerService } from './service/pager.service';
   imports: [
     FormsModule,
     CommonModule
-],
-    providers: [PagerService]
+  ],
+  providers: [PagerService]
 })
 export class PaginationServerComponent {
   @Input() public pager: any = {};
@@ -29,7 +29,7 @@ export class PaginationServerComponent {
     this.setPagination(this.configPag.currentPageNumber);
   }
 
-  trackByFn(item: any): number {
+  trackByFn(item: any, page: any): number {
     return item;
   }
 

@@ -11,10 +11,9 @@
       </li>
 
       @for (page of pager.pages; track trackByFn($index, page)) {
-        <li [ngClass]="{ 'custom-disabled active': configPag.currentPageNumber === page }" class="page-item"
-          >
-          <a class="page-link" href="javascript:;" (click)="listagem(page)">{{page}}</a>
-        </li>
+      <li [ngClass]="{ 'custom-disabled active': configPag.currentPageNumber === page }" class="page-item">
+        <a class="page-link" href="javascript:;" (click)="listagem(page)">{{page}}</a>
+      </li>
       }
 
       <li [ngClass]="{ disabled: configPag.currentPageNumber + 1 > configPag.totalPages }" class="page-item">
