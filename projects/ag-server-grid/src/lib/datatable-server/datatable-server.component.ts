@@ -1,4 +1,4 @@
-import { CommonModule, DatePipe, NgFor } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ColDef } from '../models/colDef.model';
 import { ConfigPagination } from '../models/configPagination.model';
@@ -12,7 +12,7 @@ import { SearchFilterPipe } from './pipes/pipe.searchFilter';
   templateUrl: './datatable-server.component.html',
   styleUrls: ['./datatable-server.component.css'],
   standalone: true,
-  imports: [NgFor, CommonModule, PaginationServerComponent, DateOrStringPipe, SearchFilterPipe],
+  imports: [CommonModule, PaginationServerComponent, DateOrStringPipe, SearchFilterPipe],
   providers: [PagerService, DatePipe]
 })
 export class DatatableServerComponent {

@@ -1,0 +1,43 @@
+<section class="table__body">
+  <table>
+    <thead id="cat-table-header">
+      <tr>
+        @for (header of columnDefs; track header) {
+          <th scope="col" (click)="sortBy(header.field)"
+            onKeyDown="sortBy(header.field)" [style.minWidth.px]="header.minWidth != undefined ? header.minWidth : 50"
+            [style.maxWidth.px]="header.maxWidth != undefined ? header.maxWidth : 50">{{ header.headerName!= undefined ?
+          header.headerName : header.field }}</th>
+        }
+        @if (editable) {
+          <th>
+            Editar
+          </th>
+        }
+        @if (deletable) {
+          <th>
+            Excluir
+          </th>
+        }
+      </tr>
+    </thead>
+    <tbody id="cat-table-body">
+      @for (item of rowData | searchFilter: searchText; track item) {
+        <tr (dblclick)="getRow(item)">
+          @for (h of columnDefs; track h) {
+            <td>{{ item[h.field] | dateOrString }}</td>
+          }
+          @if (editable) {
+            <td><button (click)="getRow(item)">Editar</button></td>
+          }
+          @if (deletable) {
+            <td><button (click)="getRow(item)">Excluir</button></td>
+          }
+        </tr>
+      }
+    </tbody>
+  </table>
+  @if (pagination) {
+    <pagination-server [pager]="pager" [configPag]="configPag" (paginachange)="listagem($event)"
+    (next)="nextLevel($event)" (prev)="prevLevel($event)" (setPage)="setPagination($event)"></pagination-server>
+  }
+</section>

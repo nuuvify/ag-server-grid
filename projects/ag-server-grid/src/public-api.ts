@@ -1,5 +1,5 @@
 /*
- * Public API Surface of grid-server-lib
+ * Public API Surface of ag-server-grid
  */
 
 export * from './lib/datatable-server/datatable-server.component';
