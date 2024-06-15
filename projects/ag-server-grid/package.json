@@ -9,9 +9,11 @@
   },
   "peerDependencies": {
     "@angular/common": "^17.3.11",
-    "@angular/core": "^17.3.11"
+    "@angular/core": "^17.3.11",
+    "xlsx": "^0.18.5"
   },
   "dependencies": {
+    "xlsx": "^0.18.5",
     "tslib": "^2.3.0"
   },
   "sideEffects": false,

@@ -6,6 +6,7 @@ import { PaginationServerComponent } from './components/pagination-server/pagina
 import { PagerService } from './components/pagination-server/service/pager.service';
 import { DateOrStringPipe } from './pipes/pipe.dateFormat';
 import { SearchFilterPipe } from './pipes/pipe.searchFilter';
+import { ExcelService } from './service/export_excel.service';
 
 @Component({
   selector: 'datatable-server',
@@ -13,7 +14,7 @@ import { SearchFilterPipe } from './pipes/pipe.searchFilter';
   styleUrls: ['./datatable-server.component.css'],
   standalone: true,
   imports: [CommonModule, PaginationServerComponent, DateOrStringPipe, SearchFilterPipe],
-  providers: [PagerService, DatePipe]
+  providers: [PagerService, DatePipe, ExcelService]
 })
 export class DatatableServerComponent {
   sortOrder = 1;
@@ -32,6 +33,8 @@ export class DatatableServerComponent {
   @Output() public setPage: EventEmitter<any> = new EventEmitter();
   @Output() public paginachange: EventEmitter<any> = new EventEmitter();
   @Output() public getRowSelect: EventEmitter<Object> = new EventEmitter();
+
+  constructor(private excelService: ExcelService) { }
 
   listagem(pageNo: number): void {
     this.paginachange.emit(pageNo);
@@ -73,5 +76,20 @@ export class DatatableServerComponent {
       return this.sortOrder === 1 ? '⭡' : '⭣';
     }
     return '';
+  }
+
+  async exportAsXLSX() {
+    let tableCat = document.getElementById('catTable') as HTMLTableElement;
+
+    this.excelService.exportAsExcelFile(
+      // Recebe as tabelas:
+      [tableCat],
+      // Recebe os nomes do "SHEET" para cada aba:
+      ['Tabela'],
+      // Titulo de cada tabela:
+      [`Tabela`],
+      //Nome do arquivo:
+      `table.xls`
+    );
   }
 }
