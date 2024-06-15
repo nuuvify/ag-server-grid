@@ -8,8 +8,8 @@
     "npm": "^8.19.3"
   },
   "peerDependencies": {
-    "@angular/common": "^17.3.11",
-    "@angular/core": "^17.3.11",
+    "@angular/common": "^17.3.8",
+    "@angular/core": "^17.3.8",
     "xlsx": "^0.18.5"
   },
   "dependencies": {
