@@ -5,11 +5,11 @@
   "description": "Data Grid for Angular / TypeScript, with several customizable features and server side pagination.",
   "engines": {
     "node": "^18.13.0",
-    "npm": "^10.7.0"
+    "npm": "^8.19.3"
   },
   "peerDependencies": {
-    "@angular/common": "^17.3.11",
-    "@angular/core": "^17.3.11",
+    "@angular/common": "^17.3.8",
+    "@angular/core": "^17.3.8",
     "xlsx": "^0.18.5"
   },
   "dependencies": {
