@@ -7,8 +7,7 @@ export class ExcelService {
   fileExtension = '.xlsx';
 
   //Exportar tabelas por HTML
-  public exportAsExcelFile(tables: any, wsnames: any, titles: any, wbname: any,): void {
-
+  public exportAsExcelFile(tables: HTMLTableElement[], wsnames: string[], titles: string[], wbname: string): void {
     /* generate workbook and add the worksheet */
     let workbook = XLSX.utils.book_new();
 
