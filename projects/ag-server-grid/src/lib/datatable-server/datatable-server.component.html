@@ -1,29 +1,44 @@
 <section class="table__body">
-  <table>
+  <button (click)="exportAsXLSX()">Export CSV</button>
+  <table id="catTable">
     <thead id="cat-table-header">
       <tr>
-        <th scope="col" *ngFor="let header of columnDefs" (click)="sortBy(header.field)"
-          onKeyDown="sortBy(header.field)" [style.minWidth.px]="header.minWidth != undefined ? header.minWidth : 50"
+        @for (header of columnDefs; track header) {
+        <th scope="col" (click)="sortBy(header.field)" onKeyDown="sortBy(header.field)"
+          [style.minWidth.px]="header.minWidth != undefined ? header.minWidth : 50"
           [style.maxWidth.px]="header.maxWidth != undefined ? header.maxWidth : 50">{{ header.headerName!= undefined ?
           header.headerName : header.field }}</th>
-        <th *ngIf="editable">
+        }
+        @if (editable) {
+        <th>
           Editar
         </th>
-        <th *ngIf="deletable">
+        }
+        @if (deletable) {
+        <th>
           Excluir
         </th>
+        }
       </tr>
     </thead>
     <tbody id="cat-table-body">
-      <tr *ngFor="let item of rowData | searchFilter: searchText" (dblclick)="getRow(item)">
-        <ng-container *ngFor="let h of columnDefs">
-          <td>{{ item[h.field] | dateOrString }}</td>
-        </ng-container>
-        <td *ngIf="editable"><button (click)="getRow(item)">Editar</button></td>
-        <td *ngIf="deletable"><button (click)="getRow(item)">Excluir</button></td>
+      @for (item of rowData | searchFilter: searchText; track item) {
+      <tr (dblclick)="getRow(item)">
+        @for (h of columnDefs; track h) {
+        <td>{{ item[h.field] | dateOrString }}</td>
+        }
+        @if (editable) {
+        <td><button (click)="getRow(item)">Editar</button></td>
+        }
+        @if (deletable) {
+        <td><button (click)="getRow(item)">Excluir</button></td>
+        }
       </tr>
+      }
     </tbody>
   </table>
-  <pagination-server *ngIf="pagination" [pager]="pager" [configPag]="configPag" (paginachange)="listagem($event)"
+  @if (pagination) {
+  <pagination-server [pager]="pager" [configPag]="configPag" (paginachange)="listagem($event)"
     (next)="nextLevel($event)" (prev)="prevLevel($event)" (setPage)="setPagination($event)"></pagination-server>
+  }
 </section>
