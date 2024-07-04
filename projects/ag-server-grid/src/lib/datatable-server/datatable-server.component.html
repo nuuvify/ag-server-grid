@@ -1,5 +1,5 @@
 <section class="table__body">
-  <button (click)="exportAsXLSX()">Export CSV</button>
+  <button class="btn" (click)="exportAsXLSX()">Export CSV</button>
   <table id="catTable">
     <thead id="cat-table-header">
       <tr>
@@ -28,10 +28,10 @@
         <td>{{ item[h.field] | dateOrString }}</td>
         }
         @if (editable) {
-        <td><button (click)="getRow(item)">Editar</button></td>
+        <td><button class="btn" (click)="getRow(item)">Editar</button></td>
         }
         @if (deletable) {
-        <td><button (click)="getRow(item)">Excluir</button></td>
+        <td><button class="btn" (click)="getRow(item)">Excluir</button></td>
         }
       </tr>
       }
