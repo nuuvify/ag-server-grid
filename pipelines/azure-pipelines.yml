@@ -14,29 +14,29 @@ pr:
   branches:
     include:
     - refs/*
-    
+
 
 variables:
   - template: variables/global.yml@templates
 
 
-stages: 
+stages:
 
 - stage: 'Build'
   displayName: 'Build Projects'
-        
+
   jobs:
   - job: 'Build_And_Package'
     displayName: 'Build & package artifacts'
 
     pool:
       vmImage: $(vmImageName)
-    
+
     steps:
-    
-    - template: pipeline-templates/build-angular-npm.yml@templates
+
+    - template: pipeline-templates/build-angular.yml@templates
       parameters:
-        buildConfiguration: 'Release'
-        reposytoryWork: 'Nuuvify.CommonPack'
+        reposytoryWork: 'ag-server-grid'
+        projectWork: '/projects/ag-server-grid'
 
 - template: pipeline-templates/deploy-common-angular-npm.yml@templates
