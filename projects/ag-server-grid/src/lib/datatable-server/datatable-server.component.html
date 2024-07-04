@@ -1,5 +1,7 @@
 <section class="table__body">
+  @if(exportCsv){
   <button class="btn" (click)="exportAsXLSX()">Export CSV</button>
+  }
   <table id="catTable">
     <thead id="cat-table-header">
       <tr>

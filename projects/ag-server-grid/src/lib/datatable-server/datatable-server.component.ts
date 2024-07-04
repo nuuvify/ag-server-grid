@@ -27,6 +27,7 @@ export class DatatableServerComponent {
   @Input() public deletable!: boolean;
   @Input() public searchText!: string;
   @Input() public pagination: boolean = false;
+  @Input() public exportCsv: boolean = false;
   @Input() public configPag!: ConfigPagination;
   @Output() public next: EventEmitter<number> = new EventEmitter();
   @Output() public prev: EventEmitter<number> = new EventEmitter();
