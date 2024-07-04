@@ -14,26 +14,26 @@ pr:
   branches:
     include:
     - refs/*
-    
+
 
 variables:
   - template: variables/global.yml@templates
 
 
-stages: 
+stages:
 
 - stage: 'Build'
   displayName: 'Build Projects'
-        
+
   jobs:
   - job: 'Build_And_Package'
     displayName: 'Build & package artifacts'
 
     pool:
       vmImage: $(vmImageName)
-    
+
     steps:
-    
+
     - template: pipeline-templates/build-angular.yml@templates
       parameters:
         reposytoryWork: 'ag-server-grid'

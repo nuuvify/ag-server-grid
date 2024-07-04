@@ -32,11 +32,24 @@ table {
   border-top: 0;
   }
   tr:nth-child(even) td {
-  background: #e8eae9;
+    background:  rgba(255, 193, 7, 0.4);
   }
   tr:last-child td:first-child {
   border-bottom-left-radius: 4px;
   }
   tr:last-child td:last-child {
   border-bottom-right-radius: 4px;
+  }
+  .btn{
+    display: inline-block;
+    border-radius: 0.25rem;
+    position: relative;
+    padding: 0.3rem 0.3rem;
+    margin-left: -1px;
+    color: #6f736f;
+    text-decoration: none;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    cursor: pointer;
+    font-weight: 100;
   }
