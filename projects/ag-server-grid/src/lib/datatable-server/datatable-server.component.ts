@@ -17,9 +17,9 @@ import { ExcelService } from './service/export_excel.service';
   providers: [PagerService, DatePipe, ExcelService]
 })
 export class DatatableServerComponent {
-  sortOrder = 1;
-  sortedColumn!: string;
-  sortProperty!: string;
+  public sortOrder = 1;
+  public sortedColumn!: string;
+  public sortProperty!: string;
   @Input() public pager: any = {};
   @Input() public rowData: any = [];
   @Input() public columnDefs!: ColDef[];
@@ -36,6 +36,14 @@ export class DatatableServerComponent {
   @Output() public getRowSelect: EventEmitter<Object> = new EventEmitter();
 
   constructor(private excelService: ExcelService) { }
+
+  ngOnInit() {
+    this.columnDefs.forEach((obj, index) => {
+      if (obj.headerValueGetter) {
+        this.columnDefs[index].changeName = obj.headerValueGetter(obj);
+      }
+    });
+  }
 
   listagem(pageNo: number): void {
     this.paginachange.emit(pageNo);

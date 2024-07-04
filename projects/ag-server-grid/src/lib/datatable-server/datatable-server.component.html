@@ -8,8 +8,10 @@
         @for (header of columnDefs; track header) {
         <th scope="col" (click)="sortBy(header.field)" onKeyDown="sortBy(header.field)"
           [style.minWidth.px]="header.minWidth != undefined ? header.minWidth : 50"
-          [style.maxWidth.px]="header.maxWidth != undefined ? header.maxWidth : 50">{{ header.headerName!= undefined ?
-          header.headerName : header.field }}</th>
+          [style.maxWidth.px]="header.maxWidth != undefined ? header.maxWidth : 50">{{
+          header.changeName != undefined ? header.changeName : header.headerName != undefined ?
+          header.headerName : header.field
+          }}{{sortIcon(header.field)}}</th>
         }
         @if (editable) {
         <th>
