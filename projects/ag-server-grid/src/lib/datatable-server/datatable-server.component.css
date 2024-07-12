@@ -3,15 +3,14 @@ table {
   width: 100%;
   }
   th {
-  background: #404853;
-  background: linear-gradient(#7268877a, #5b636df7);
-  border-left: 1px solid rgba(0, 0, 0, 0.2);
-  border-right: 1px solid rgba(255, 255, 255, 0.1);
-  color: #fff;
-  padding: 8px;
-  text-align: center;
-
-  }
+    background: #848789;
+    background: linear-gradient(#4746487a, #5b636df7);
+    border-left: 1px solid rgba(0, 0, 0, 0.2);
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    color: #fff;
+    padding: 8px;
+    text-align: center;
+}
   th:first-child {
   border-top-left-radius: 4px;
   border-left: 0;
@@ -32,7 +31,7 @@ table {
   border-top: 0;
   }
   tr:nth-child(even) td {
-    background:  rgba(255, 193, 7, 0.4);
+  background:  rgba(255, 193, 7, 0.4);
   }
   tr:last-child td:first-child {
   border-bottom-left-radius: 4px;
@@ -40,6 +39,7 @@ table {
   tr:last-child td:last-child {
   border-bottom-right-radius: 4px;
   }
+
   .btn{
     display: inline-block;
     border-radius: 0.25rem;
