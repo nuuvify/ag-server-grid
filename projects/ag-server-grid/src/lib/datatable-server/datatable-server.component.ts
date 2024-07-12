@@ -37,7 +37,16 @@ export class DatatableServerComponent {
 
   constructor(private excelService: ExcelService) { }
 
+
   ngOnInit() {
+    this.refreshTableHeader();
+  }
+
+  ngOnChanges(): void {
+    this.refreshTableHeader();
+  }
+
+  refreshTableHeader() {
     this.columnDefs.forEach((obj, index) => {
       if (obj.headerValueGetter) {
         this.columnDefs[index].changeName = obj.headerValueGetter(obj);
