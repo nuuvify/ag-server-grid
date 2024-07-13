@@ -8,4 +8,5 @@ export interface ColDef {
   cellRenderer?: any;
   headerValueGetter?: (obj: ColDef) => string;
   changeName?: string;
+  sortBy?: boolean;
 }
