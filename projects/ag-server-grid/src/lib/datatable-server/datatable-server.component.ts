@@ -39,27 +39,22 @@ export class DatatableServerComponent {
 
 
   ngOnInit() {
-    // Chamando a função quando o componente é inicializado
     this.validActionsColumns();
-    console.log(this.columnDefs);
-
   }
 
   ngOnChanges(): void {
-    this.validActionsColumns();
+    this.columnDefs.forEach((obj, index) => {
+      if (obj.headerValueGetter) {
+        this.columnDefs[index].changeName = obj.headerValueGetter(obj);
+      }
+    });
   }
 
 
   validActionsColumns() {
     this.columnDefs.forEach((obj, index) => {
-      this.refreshTableHeader(obj, index);
       this.orderByOnInit(obj);
     });
-  }
-  refreshTableHeader(obj: ColDef, index: number) {
-    if (obj.headerValueGetter) {
-      this.columnDefs[index].changeName = obj.headerValueGetter(obj);
-    }
   }
 
   orderByOnInit(obj: ColDef) {
@@ -67,7 +62,6 @@ export class DatatableServerComponent {
       this.sortBy(obj.field);
     }
   }
-
 
   listagem(pageNo: number): void {
     this.paginachange.emit(pageNo);
