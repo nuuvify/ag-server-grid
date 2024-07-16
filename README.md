@@ -1,7 +1,3 @@
-# ag-server-grid
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.0.
-
-[Projeto (Click aqui)](./projects/ag-server-grid/)
 No template inicial de cada projeto está sendo disponibilizado de exemplo de como usar o **ag-server-grid**
   
 ![image](https://github.com/user-attachments/assets/766bbcc6-5383-4f14-b09c-5040c48e14d9)
@@ -121,3 +117,15 @@ Configurações necessárias para que a tabela seja renderizada corretamente:
   -    Quando apertamos o botão para traduzir para o Inglês:
  
  ![image](https://github.com/user-attachments/assets/1473ea03-78fe-4c5e-998c-14f89d90465f)
+## 6 - Ordenação por coluna:
+ Na variável columnDef onde estão declarada as nossas colunas, basta colocar a propriedade sortBy:true na coluna que deseja ordenar ao carregar os dados:
+  
+ ![image](https://github.com/user-attachments/assets/c5ab936e-109e-47cc-93eb-988ab8ec248a)
+## 7 - Largura das colunas:
+  Na variável columnDef onde estão declarada as nossas colunas, basta colocar a propriedade minWidth para determinar o mínimo de largura de uma coluna ou declarar maxWidth para declarar qual é o máximo de largura da coluna:
+ 
+![image](https://github.com/user-attachments/assets/7b199a33-45ea-4924-87d6-d8df9e7af714)
+## 8 - Formatação de Datas:
+  Não é necessário fazer nenhuma configuração para formatar a data, pois o componente tem inteligência para identificar o formato de uma data e o formato de uma string. Sendo assim quando for identificado uma data, o componente irá formatar automaticamente:
+![image](https://github.com/user-attachments/assets/0e99cd01-cbfc-46dd-9fb5-f75fd4916612)
+ 
