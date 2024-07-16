@@ -128,4 +128,20 @@ Configurações necessárias para que a tabela seja renderizada corretamente:
 ## 8 - Formatação de Datas:
   Não é necessário fazer nenhuma configuração para formatar a data, pois o componente tem inteligência para identificar o formato de uma data e o formato de uma string. Sendo assim quando for identificado uma data, o componente irá formatar automaticamente:
 ![image](https://github.com/user-attachments/assets/0e99cd01-cbfc-46dd-9fb5-f75fd4916612)
- 
+
+## 9 - Exportar tabela para CSV:
+  Basta ir no HTML e acionar na tag `<datatable-server></datatable-server>` [exportCsv]="true"  como demonstrado no exemplo abaixo:
+
+![image](https://github.com/user-attachments/assets/322e2c2b-e11c-46ba-b5dc-5d16aa5b97b0)
+
+** Resultado depois de fazer a configuração:**
+
+![image](https://github.com/user-attachments/assets/d31eafdd-d528-46ca-b478-1f89350c0191)
+
+ **Arquivo Gerado:**
+
+![image](https://github.com/user-attachments/assets/fb1aa912-ab25-4dff-b2a0-6e3691481151)
+
+Obs: O botão **Export CSV** gera o arquivo apenas com as informações que estão na tela, caso precise gerar o arquivo com todos os registros da base de dados, opte sempre fazer pelo back-end.
+
+
