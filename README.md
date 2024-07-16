@@ -128,7 +128,9 @@ Configurações necessárias para que a tabela seja renderizada corretamente:
    ![image](https://github.com/user-attachments/assets/53d70817-eacb-4450-980b-a8cea8b3b236)
    
 ## 7 - Largura das colunas:
-      Na variavel columnDef onde estão declarada as nossas colunas, basta colocar a propriedade minWidith para determinar o minimo de largura de uma coluna ou declarar max width para declarar qual é o máximo de largura da coluna:
+
+      Na variavel columnDef onde estão declarada as nossas colunas, basta colocar a propriedade minWidth para determinar o minimo de largura de uma coluna ou declarar maxWidth para declarar qual é o máximo de largura da coluna:
+      
   ![image](https://github.com/user-attachments/assets/cc7775ec-a69b-451c-9f9e-b7c3cd702c02)
 
 
