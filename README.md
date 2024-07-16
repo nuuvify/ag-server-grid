@@ -119,6 +119,7 @@ Configurações necessárias para que a tabela seja renderizada corretamente:
  ![image](https://github.com/user-attachments/assets/777d3ad2-56a0-4c19-83b3-019636831ec0)
 
   -    Quando apertamos o botão para traduzir para o Inglês:
+**Resultado depois de fazer a configuração:**
  
  ![image](https://github.com/user-attachments/assets/1473ea03-78fe-4c5e-998c-14f89d90465f)
  
