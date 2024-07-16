@@ -27,6 +27,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 See the [LICENSE file](./LICENSE) for more info.
 
+## Instruções para usar o ag-serve-grid:
 
 No template inicial de cada projeto está sendo disponibilizado de exemplo de como usar o **ag-server-grid**
   
