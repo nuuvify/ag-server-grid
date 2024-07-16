@@ -121,3 +121,7 @@ Configurações necessárias para que a tabela seja renderizada corretamente:
   -    Quando apertamos o botão para traduzir para o Inglês:
  
  ![image](https://github.com/user-attachments/assets/1473ea03-78fe-4c5e-998c-14f89d90465f)
+ 
+## 6 - Ordenação por coluna: 
+   Na variavel columnDef onde estão declarada as nossas colunas, basta colocar a propriedade sortBy:true na coluna que deseja ordernar ao carregar os dados:
+   ![image](https://github.com/user-attachments/assets/53d70817-eacb-4450-980b-a8cea8b3b236)
