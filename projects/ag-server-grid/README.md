@@ -1,6 +1,6 @@
 # ag-server-grid
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.0.0.
+This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.0.
 
 ## Code scaffolding
 
@@ -245,12 +245,37 @@ Obs: O botão **Export CSV** gera o arquivo apenas com as informações que est�
   
   ![image](https://github.com/user-attachments/assets/0c8a8530-b6d9-45aa-a9b0-df7a3199dd97)
 
+* Dentro do seu método listar, pegue as variáveis que declaramos nos passos anteriores e coloque as informações da paginação que vem da API:
+
+   ![image](https://github.com/user-attachments/assets/0c5cafe9-956b-476f-80d3-c443d6127798)
+
+
  
 Depois de fazer toda a configuração da paginação, você verá um resultado como esse:
 
   ![image](https://github.com/user-attachments/assets/03303c4f-55b2-479e-b2f1-e4c18c2f0f66)
 
-## 11 - Testes Unitários:
+
+## 11 - Campo de Pesquisa:
+    
+* Para ativar o campo de pesquisa, basta colocar no HTML um campo de texto com uma variável para guardar o texto digitado pelo usuário:
+        
+    ![image](https://github.com/user-attachments/assets/379ecfa4-393c-4b28-90d1-43bb4f3e4b8d)
+
+* Declare a variável usada no input no TypeScript com o tipo string:
+ 
+  ![image](https://github.com/user-attachments/assets/95095c4d-2e8a-40fe-b714-b1dabd15db11)
+  
+  
+  ![image](https://github.com/user-attachments/assets/05c83c6c-cc3f-47b2-b788-447caf4c7e3a)
+
+* Passe a variável dentro da tag `<datatable-server></datatable-server>`  com a propriedade [searchText]="searchText":
+    
+  ![image](https://github.com/user-attachments/assets/cfcc17d2-b58d-4a61-a2ed-2a605d2f38f4)
+
+**Obs:** O campo de pesquisa só irá funcionar em registros renderizados na tela.
+
+## 12 - Testes Unitários:
   
 * Exemplo de teste unitário para testar os campos definidos no Header da tabela:
    
