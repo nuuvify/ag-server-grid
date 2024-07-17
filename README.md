@@ -45,15 +45,15 @@ Configurações necessárias para que a tabela seja renderizada corretamente:
 ![image](https://github.com/user-attachments/assets/50571f89-adf3-4dce-9ac3-2e94aa00d4fd)
 
 
- ## 3 - Edição de registros
-   * Dentro da tag `<datatable-server></datatable-server>` acrescente o `[editable]="true"` para habilitar o botão de edição em todos os registros da tabela:
+ ## 3 - Ativação do Botão "Editar" ou "Excluir" registros
+   * Dentro da tag `<datatable-server></datatable-server>` acrescente o `[editable]="true"` ou  [deletable]="true" para habilitar o botão de editar/excluir em todos os registros da tabela:
   
-   ![image](https://github.com/user-attachments/assets/72491469-836d-4e58-82d9-4462f1bab09b)
-  
-**Resultado depois de ativar a configuração editable=true :**
- 
- ![image](https://github.com/user-attachments/assets/137ff582-a968-4a3c-aaf5-c6b5b2c9e1b3)
+   ![image](https://github.com/user-attachments/assets/fe307fb4-a55e-4884-8824-b348874c169c)
 
+  
+**Resultado depois de ativar a configuração `[editable]="true"` ou  `[deletable]="true"` :**
+ 
+   ![image](https://github.com/user-attachments/assets/9944695e-1319-4b92-878c-46e9ff990473)
 
 ## **4 - Pegar valores da linha do botão editar da tabela**
   * Crie um método para pegar os valores da linha editada como mostra no exemplo:
@@ -144,4 +144,148 @@ Configurações necessárias para que a tabela seja renderizada corretamente:
 
 Obs: O botão **Export CSV** gera o arquivo apenas com as informações que estão na tela, caso precise gerar o arquivo com todos os registros da base de dados, opte sempre fazer pelo back-end.
 
+## 10 - Paginação Server Side:
+* Para ativar a paginação basta ir até a tag `<datatable-server></datatable-server>` e acrescentar o `[pagination]="true"`
+![image](https://github.com/user-attachments/assets/29922bca-cb62-4c88-ad76-7aebc0b63bf6)
+* Implemente essa variáveis:
 
+  `
+    public pager: any = {};
+    public totalCount!: number;
+    public totalPages: number = 0;
+    public recordsPerPage: number = 5;
+    public currentPageNumber: number = 0;
+    public totalRecordsCount: number = 0; 
+  `
+
+   **Exemplo:**
+  
+   ![image](https://github.com/user-attachments/assets/dc7a5b56-e2a6-483b-8606-bf0fde13363a)
+ * Implemente o método next(event:number) e dentro do método chame seu método de listagem passando o valor recebido para ir para a página seguinte. **Siga o exemplo:**
+ 
+   ![image](https://github.com/user-attachments/assets/6c2ab575-4926-49f7-abc8-41ed77916922)
+
+   Chame o método next dentro da tag `<datatable-server></datatable-server>`:
+   
+   ![image](https://github.com/user-attachments/assets/d120168b-2bd3-4de8-aa9c-9b08db8badaa)
+
+* Implemente o método prev(event:number) e dentro do método chame seu método de listagem passando o valor recebido para ir para a página anterior. **Siga o exemplo:**
+
+   ![image](https://github.com/user-attachments/assets/274a4ca2-f808-4201-b553-1448d1236548)
+
+    Chame o método prev dentro da tag `<datatable-server></datatable-server>`:
+
+   ![image](https://github.com/user-attachments/assets/c9ce69b4-ded2-4e25-babc-203d345b063c)
+
+*  Declare o `[pager]="pager"` dentro da tag `<datatable-server></datatable-server>`
+   
+   ![image](https://github.com/user-attachments/assets/b3cef75a-8d4a-428c-9d0c-9d74bb6218c1)
+
+* Chame o `(setPage)="pager = $event"` dentro da tag `<datatable-server></datatable-server>`:
+  
+   ![image](https://github.com/user-attachments/assets/89f20daa-14d3-41a1-8cb0-84aa7d8e1021)
+
+* Implemente o método getNumberPage(event:number) e dentro do método chame seu método de listagem passando o valor recebido para ir para a página escolhida. **Siga o exemplo:**
+   
+  ![image](https://github.com/user-attachments/assets/09c3b0d0-473d-4ed8-8ee0-b9e6c206c3fe)
+
+  Chame este método dentro da tag `<datatable-server></datatable-server>`
+   
+  ![image](https://github.com/user-attachments/assets/67603ecf-be54-402b-acbb-9db1cc12a962)
+
+   **Resultado do Funcionamento dos botões:** 
+  
+  ![image](https://github.com/user-attachments/assets/d904734f-0235-4c47-b2b1-22daff500044)
+
+ * Para que a paginação funcione corretamente, faça a importação das interface de configuração de paginação:
+   
+   ![image](https://github.com/user-attachments/assets/17db0a81-8fea-41bd-993d-bccf0e694b70)
+
+ * Crie o método de configurações no código para passar ao componente para que seja possível processar a informação da página:
+  
+       configPag(): ConfigPagination {
+         return {
+           totalPages: this.totalPages,
+           totalRecordsCount: this.totalRecordsCount,
+           recordsPerPage: this.recordsPerPage,
+           currentPageNumber: this.currentPageNumber
+        }}
+* Chame `configPag` dentro da tag `<datatable-server></datatable-server>` :
+  
+  ![image](https://github.com/user-attachments/assets/0c8a8530-b6d9-45aa-a9b0-df7a3199dd97)
+
+* Dentro do seu método listar, pegue as variáveis que declaramos nos passos anteriores e coloque as informações da paginação que vem da API:
+
+   ![image](https://github.com/user-attachments/assets/0c5cafe9-956b-476f-80d3-c443d6127798)
+
+
+ 
+Depois de fazer toda a configuração da paginação, você verá um resultado como esse:
+
+  ![image](https://github.com/user-attachments/assets/03303c4f-55b2-479e-b2f1-e4c18c2f0f66)
+
+
+## 11 - Campo de Pesquisa:
+    
+* Para ativar o campo de pesquisa, basta colocar no HTML um campo de texto com uma variável para guardar o texto digitado pelo usuário:
+        
+    ![image](https://github.com/user-attachments/assets/379ecfa4-393c-4b28-90d1-43bb4f3e4b8d)
+
+* Declare a variável usada no input no TypeScript com o tipo string:
+ 
+  ![image](https://github.com/user-attachments/assets/95095c4d-2e8a-40fe-b714-b1dabd15db11)
+  
+  
+  ![image](https://github.com/user-attachments/assets/05c83c6c-cc3f-47b2-b788-447caf4c7e3a)
+
+* Passe a variável dentro da tag `<datatable-server></datatable-server>`  com a propriedade [searchText]="searchText":
+    
+  ![image](https://github.com/user-attachments/assets/cfcc17d2-b58d-4a61-a2ed-2a605d2f38f4)
+
+**Obs:** O campo de pesquisa só irá funcionar em registros renderizados na tela.
+
+## 12 - Testes Unitários:
+  
+* Exemplo de teste unitário para testar os campos definidos no Header da tabela:
+   
+    
+        it('should have expected column headers', () => {
+           usersServiceSpy.listUsers.and.returnValue(of(listaDeUsers));
+           component.listaUsuarios();
+           fixture.detectChanges();
+
+          const elm = fixture.nativeElement;
+          const grid = elm.querySelector('datatable-server');
+          const headers = grid.querySelectorAll('#cat-table-header tr th');
+          const headerTexts = Array.from(headers).map((header: any) => header.textContent.trim());
+
+          expect(headerTexts).toEqual(['ID', 'Nome' ,'Cliente', 'User ID' ,'Excluir']);
+        });
+
+* Exemplo de teste unitário para testar se os valores da tabela estão conforme o esperado e verificar se a tabela está sendo carregada corretamente:
+        
+        it('the grid cells should be as expected', async () => {
+
+           usersServiceSpy.listUsers.and.returnValue(of(listaDeUsers));
+           component.listaUsuarios();
+           fixture.detectChanges();
+
+          const cellElements = fixture.nativeElement.querySelectorAll('#cat-table-body tr td');
+
+         expect(cellElements.length).toEqual(10);
+
+         expect(cellElements[0].textContent).toEqual("012b576j-9211-25348-wr31-v52fh831880m5");
+         expect(cellElements[1].textContent).toEqual("value_test");
+         expect(cellElements[2].textContent).toEqual("012b576j-9211-25348-wr31-v52fh831880m5");
+         expect(cellElements[3].textContent).toEqual('PAAAAAAAAAAAA');
+         expect(cellElements[4].textContent).toEqual("Excluir");
+         expect(cellElements[5].textContent).toEqual("012b576j-9211-25348-wr31-v52fh831880m5");
+         expect(cellElements[6].textContent).toEqual("value_test");
+         expect(cellElements[7].textContent).toEqual("012b576j-9211-25348-wr31-v52fh831880m5");
+         expect(cellElements[8].textContent).toEqual('PAAAAAAAAAAAA');
+         expect(cellElements[4].textContent).toEqual("Excluir");
+        });
+
+ **Obs:** Estes valores são fictícios, trocar conforme a sua tabela e seu teste unitário.
+
+ 
