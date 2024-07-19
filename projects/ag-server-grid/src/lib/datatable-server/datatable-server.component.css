@@ -53,3 +53,10 @@ table {
     cursor: pointer;
     font-weight: 100;
   }
+  .selected {
+    background-color: skyblue;
+  }
+
+  .btn:disabled{
+    background-color:  #b5b5b5;
+  }

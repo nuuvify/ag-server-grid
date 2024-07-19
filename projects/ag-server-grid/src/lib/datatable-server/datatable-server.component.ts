@@ -34,9 +34,15 @@ export class DatatableServerComponent {
   @Output() public setPage: EventEmitter<any> = new EventEmitter();
   @Output() public paginachange: EventEmitter<any> = new EventEmitter();
   @Output() public getRowSelect: EventEmitter<Object> = new EventEmitter();
+  @Output() public getListSelect: EventEmitter<Object> = new EventEmitter();
+  @Output() public getRowEdit: EventEmitter<Object> = new EventEmitter();
+  @Output() public getListExcluir: EventEmitter<Object> = new EventEmitter();
+  public rowEdit!: any;
+  public indicesSelecionados: Set<number> = new Set<number>();
+  public ultimaLinhaSelecionadaIndex: number | null = null;
+  public itensSelecionados: any[] = [];
 
   constructor(private excelService: ExcelService) { }
-
 
   ngOnInit() {
     this.validActionsColumns();
@@ -68,19 +74,23 @@ export class DatatableServerComponent {
   }
 
   nextLevel(currentPageNumber: number): void {
+    this.clearMarkRowsTable();
     this.next.emit(currentPageNumber);
   }
 
   prevLevel(currentPageNumber: number): void {
-    this.prev.emit(currentPageNumber)
+    this.clearMarkRowsTable();
+    this.prev.emit(currentPageNumber);
   }
 
   setPagination(page: Object): void {
     this.setPage.emit(page);
   }
 
-  getRow(bodyJson: any): void {
-    this.getRowSelect.emit(bodyJson);
+  clearMarkRowsTable() {
+    this.ultimaLinhaSelecionadaIndex = 0;
+    this.itensSelecionados = [];
+    this.indicesSelecionados.clear();
   }
 
   sortBy(property: string): void {
@@ -118,5 +128,55 @@ export class DatatableServerComponent {
       //Nome do arquivo:
       `table.xls`
     );
+  }
+
+  isSelecionado(index: number): boolean {
+    return this.indicesSelecionados.has(index);
+  }
+
+  selecionarLinha(index: number, event: MouseEvent): void {
+    if (event.ctrlKey && event.shiftKey) {
+      this.marcarAteLinhaAtual(index);
+    } else if (event.ctrlKey) {
+      if (this.indicesSelecionados.has(index)) {
+        this.indicesSelecionados.delete(index);
+      } else {
+        this.indicesSelecionados.add(index);
+      }
+      this.ultimaLinhaSelecionadaIndex = index;
+    } else {
+      this.indicesSelecionados.clear();
+      this.indicesSelecionados.add(index);
+      this.ultimaLinhaSelecionadaIndex = index;
+    }
+    this.atualizarSelecao();
+  }
+
+  marcarAteLinhaAtual(indexAtual: number): void {
+    if (this.ultimaLinhaSelecionadaIndex !== null) {
+      const [inicio, fim] = [this.ultimaLinhaSelecionadaIndex, indexAtual].sort((a, b) => a - b);
+      for (let i = inicio; i <= fim; i++) {
+        this.indicesSelecionados.add(i);
+      }
+    }
+  }
+
+  atualizarSelecao(): void {
+    this.itensSelecionados = Array.from(this.indicesSelecionados).map(index => this.rowData[index]);
+    this.getListSelect.emit(this.itensSelecionados);
+  }
+
+  getRow(bodyJson: any): void {
+    this.rowEdit = bodyJson;
+    this.getRowSelect.emit(this.rowEdit);
+
+  }
+
+  getRowEditSelect() {
+    this.getRowEdit.emit(this.rowEdit);
+  }
+
+  getRowListDeleteSelect() {
+    this.getListExcluir.emit(this.itensSelecionados);
   }
 }

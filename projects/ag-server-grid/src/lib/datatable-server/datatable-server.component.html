@@ -1,7 +1,21 @@
 <section class="table__body">
-  @if(exportCsv){
-  <button class="btn" (click)="exportAsXLSX()">Export CSV</button>
-  }
+  <div style="display: flex; justify-content:right; padding: 3px;   flex-wrap: wrap;">
+    @if(exportCsv){
+    <div style="margin-right: 5px;">
+      <button class="btn" (click)="exportAsXLSX()">EXPORT csv</button>
+    </div>
+    }
+    @if(editable){
+    <div style="margin-right: 5px;">
+      <button [disabled]="itensSelecionados.length > 1" (click)="getRowEditSelect()" class="btn">Alterar</button>
+    </div>
+    }
+    @if(deletable){
+    <div style="margin-right: 5px;">
+      <button class="btn" (click)="getRowListDeleteSelect()">Excluir</button>
+    </div>
+    }
+  </div>
   <table id="catTable">
     <thead id="cat-table-header">
       <tr>
@@ -26,8 +40,8 @@
       </tr>
     </thead>
     <tbody id="cat-table-body">
-      @for (item of rowData | searchFilter: searchText; track item) {
-      <tr (dblclick)="getRow(item)">
+      @for (item of rowData | searchFilter: searchText; track item; let i = $index) {
+      <tr (dblclick)="getRow(item)" [class.selected]="isSelecionado(i)" (click)="selecionarLinha(i, $event)">
         @for (h of columnDefs; track h) {
         <td>{{ item[h.field] | dateOrString }}</td>
         }
