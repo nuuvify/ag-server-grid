@@ -1,22 +1,23 @@
-<div style="display: flex; justify-content:space-between; align-items: center;">
-  <div class="records-count d-sm-block text-secondary">
+<div style="display: flex; justify-content: space-between; align-items: center;">
+  <div class="text-3xl font-bold underline">
     Showing {{ pager.startIndex + 1 }} to {{ pager.endIndex + 1 }} of
     {{ configPag.totalRecordsCount }} entries
   </div>
 
   <nav class="pages">
     <ul class="pagination">
-      <li [ngClass]="{ disabled: configPag.currentPageNumber === 1 }" class="page-item">
+      <li [ngClass]="{ disabled: configPag.currentPageNumber <= 0 }" class="page-item">
         <a href="javascript:;" class="page-link" (click)="prevLevel()">Previous</a>
       </li>
 
       @for (page of pager.pages; track trackByFn($index, page)) {
       <li [ngClass]="{ 'custom-disabled active': configPag.currentPageNumber === page }" class="page-item">
-        <a class="page-link" href="javascript:;" (click)="listagem(page)">{{page}}</a>
+        <a class="page-link" href="javascript:;" (click)="listagem(page)">{{page + 1}}</a>
+
       </li>
       }
 
-      <li [ngClass]="{ disabled: configPag.currentPageNumber + 1 > configPag.totalPages }" class="page-item">
+      <li [ngClass]="{ disabled: configPag.currentPageNumber >= configPag.totalPages - 1 }" class="page-item">
         <a class="page-link" href="javascript:;" (click)="nextLevel()">Next</a>
       </li>
     </ul>
