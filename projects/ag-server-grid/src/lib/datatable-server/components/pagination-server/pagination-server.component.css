@@ -27,8 +27,7 @@
   border-color: #ddd;
 }
 .page-item.disabled .page-link,
-.page-item.disabled .page-link:focus,
-.page-item.disabled .page-link:hover {
+.page-item.disabled  {
   color: #818a91;
   pointer-events: none;
   cursor: not-allowed;
