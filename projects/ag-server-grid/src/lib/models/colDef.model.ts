@@ -5,7 +5,6 @@ export interface ColDef {
   maxWidth?: number,
   editable?: boolean,
   isDate?: boolean;
-  cellRenderer?: any;
   headerValueGetter?: (obj: ColDef) => string;
   changeName?: string;
   sortBy?: boolean;

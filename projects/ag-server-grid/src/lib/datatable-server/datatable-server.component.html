@@ -7,7 +7,8 @@
     }
     @if(editable){
     <div style="margin-right: 5px;">
-      <button [disabled]="itensSelecionados.length > 1" (click)="getRowEditSelect()" class="btn">Alterar</button>
+      <button [disabled]="itensSelecionados.length == 0 || itensSelecionados.length> 1" (click)="getRowEditSelect()"
+        class="btn">Alterar</button>
     </div>
     }
     @if(deletable){
@@ -59,7 +60,7 @@
       }
     </tbody>
   </table>
-  @if (pagination && rowData.length > 0) {
+  @if (pagination && rowData.length > 0 && (configPag != undefined && configPag.totalPages > 1)) {
   <pagination-server [pager]="pager" [configPag]="configPag" (paginachange)="listagem($event)"
     (next)="nextLevel($event)" (prev)="prevLevel($event)" (setPage)="setPagination($event)"></pagination-server>
   }
