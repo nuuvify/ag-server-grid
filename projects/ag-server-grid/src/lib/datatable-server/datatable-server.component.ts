@@ -1,5 +1,5 @@
 import { CommonModule, DatePipe } from '@angular/common';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, SimpleChanges } from '@angular/core';
 import { ColDef } from '../models/colDef.model';
 import { ConfigPagination } from '../models/configPagination.model';
 import { PaginationServerComponent } from './components/pagination-server/pagination-server.component';
@@ -45,10 +45,20 @@ export class DatatableServerComponent {
   constructor(private excelService: ExcelService) { }
 
   ngOnInit() {
-    this.validActionsColumns();
+    this.initializeColumns();
+    this.initializeSorting();
   }
 
-  ngOnChanges(): void {
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['columnDefs'] || changes['rowData']) {
+      this.initializeColumns();
+      if (this.columnDefs && this.rowData) {
+        this.initializeSorting();
+      }
+    }
+  }
+
+  initializeColumns() {
     this.columnDefs.forEach((obj, index) => {
       if (obj.headerValueGetter) {
         this.columnDefs[index].changeName = obj.headerValueGetter(obj);
@@ -56,16 +66,10 @@ export class DatatableServerComponent {
     });
   }
 
-
-  validActionsColumns() {
-    this.columnDefs.forEach((obj, index) => {
-      this.orderByOnInit(obj);
-    });
-  }
-
-  orderByOnInit(obj: ColDef) {
-    if (obj.sortBy) {
-      this.sortBy(obj.field);
+  initializeSorting() {
+    const defaultSortColumn = this.columnDefs.find(col => col.sortBy);
+    if (defaultSortColumn) {
+      this.sortBy(defaultSortColumn.field);
     }
   }
 
@@ -97,14 +101,13 @@ export class DatatableServerComponent {
     this.sortOrder = property === this.sortProperty ? (this.sortOrder * -1) : 1;
     this.sortProperty = property;
     this.rowData = [...this.rowData.sort((a: any, b: any) => {
-      let result = 0;
       if (a[property] < b[property]) {
-        result = -1;
+        return -1 * this.sortOrder;
       }
       if (a[property] > b[property]) {
-        result = 1;
+        return 1 * this.sortOrder;
       }
-      return result * this.sortOrder;
+      return 0;
     })];
   }
 
