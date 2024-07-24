@@ -51,8 +51,8 @@ export class DatatableServerComponent {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
+    this.initializeColumns();
     if (changes['columnDefs'] || changes['rowData']) {
-      this.initializeColumns();
       if (this.columnDefs && this.rowData) {
         this.initializeSorting();
       }
