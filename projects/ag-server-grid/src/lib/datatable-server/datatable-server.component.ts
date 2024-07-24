@@ -38,6 +38,8 @@ export class DatatableServerComponent {
   @Output() public getRowEdit: EventEmitter<Object> = new EventEmitter();
   @Output() public getRowBtn: EventEmitter<Object> = new EventEmitter();
   @Output() public getListExcluir: EventEmitter<Object> = new EventEmitter();
+  @Output() public getRowExcluir: EventEmitter<Object> = new EventEmitter();
+
   public rowEdit!: any;
   public indicesSelecionados: Set<number> = new Set<number>();
   public ultimaLinhaSelecionadaIndex: number | null = null;
@@ -51,8 +53,8 @@ export class DatatableServerComponent {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
+    this.initializeColumns();
     if (changes['columnDefs'] || changes['rowData']) {
-      this.initializeColumns();
       if (this.columnDefs && this.rowData) {
         this.initializeSorting();
       }
@@ -187,7 +189,11 @@ export class DatatableServerComponent {
 
   //getRowListDeleteSelect() Quando o botão excluir e varias linhas estiver selecionada
   getRowListDeleteSelect() {
-    this.getListExcluir.emit(this.itensSelecionados);
+    if (this.itensSelecionados.length == 1) {
+      this.getRowExcluir.emit(this.itensSelecionados[0]);
+    } else {
+      this.getListExcluir.emit(this.itensSelecionados);
+    }
   }
 
   //buttonClick() Quando o botão de uma linha especifica for selecionada

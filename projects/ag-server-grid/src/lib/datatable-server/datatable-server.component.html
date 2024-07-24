@@ -21,7 +21,7 @@
     <thead id="cat-table-header">
       <tr>
         @for (header of columnDefs; track header) {
-        <th scope="col" (click)="sortBy(header.field)" onKeyDown="sortBy(header.field)"
+        <th scope="col" (click)="sortBy(header.field)" title={{header.field}} onKeyDown="sortBy(header.field)"
           [style.minWidth.px]="header.minWidth != undefined ? header.minWidth : 50"
           [style.maxWidth.px]="header.maxWidth != undefined ? header.maxWidth : 50">{{
           header.changeName != undefined ? header.changeName : header.headerName != undefined ?
