@@ -191,10 +191,8 @@ export class DatatableServerComponent {
   getRowListDeleteSelect() {
     if (this.itensSelecionados.length == 1) {
       this.getRowExcluir.emit(this.itensSelecionados[0]);
-      console.log('Quando o botão excluir e 1 linha estiver selecionada', this.itensSelecionados[0])
     } else {
       this.getListExcluir.emit(this.itensSelecionados);
-      console.log('Quando o botão excluir e varias linhas estiver selecionada', this.itensSelecionados);
     }
   }
 
