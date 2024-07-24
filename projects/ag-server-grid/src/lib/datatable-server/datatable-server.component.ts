@@ -36,6 +36,7 @@ export class DatatableServerComponent {
   @Output() public getRowSelect: EventEmitter<Object> = new EventEmitter();
   @Output() public getListSelect: EventEmitter<Object> = new EventEmitter();
   @Output() public getRowEdit: EventEmitter<Object> = new EventEmitter();
+  @Output() public getRowBtn: EventEmitter<Object> = new EventEmitter();
   @Output() public getListExcluir: EventEmitter<Object> = new EventEmitter();
   public rowEdit!: any;
   public indicesSelecionados: Set<number> = new Set<number>();
@@ -169,17 +170,29 @@ export class DatatableServerComponent {
     this.getListSelect.emit(this.itensSelecionados);
   }
 
+  shouldSkipCell(column: any): boolean {
+    return column?.showButton;
+  }
+
+  //getRow() Quando uma linha estiver selecionada
   getRow(bodyJson: any): void {
     this.rowEdit = bodyJson;
     this.getRowSelect.emit(this.rowEdit);
-
   }
 
+  //getRowEditSelect() Quando o botão editar e uma linha estiver selecionada
   getRowEditSelect() {
     this.getRowEdit.emit(this.rowEdit);
   }
 
+  //getRowListDeleteSelect() Quando o botão excluir e varias linhas estiver selecionada
   getRowListDeleteSelect() {
     this.getListExcluir.emit(this.itensSelecionados);
+  }
+
+  //buttonClick() Quando o botão de uma linha especifica for selecionada
+  buttonClick(event: Event, item: any): void {
+    event.stopPropagation();
+    this.getRowBtn.emit(item);
   }
 }
