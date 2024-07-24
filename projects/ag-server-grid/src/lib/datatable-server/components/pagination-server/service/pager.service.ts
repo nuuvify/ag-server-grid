@@ -1,44 +1,45 @@
 import { Injectable } from '@angular/core';
+
 @Injectable()
 export class PagerService {
-  getPager(totalItems: number, currentPage: number = 1, pageSize: number = 10): Object {
-    // calculate total pages
+  getPager(totalItems: number, currentPage: number = 0, pageSize: number = 10): Object {
+    // calcular o total de páginas
     let totalPages = Math.ceil(totalItems / pageSize);
 
-    // ensure current page isn't out of range
-    if (currentPage < 1) {
-      currentPage = 1;
-    } else if (currentPage > totalPages) {
-      currentPage = totalPages;
+    // garantir que a página atual não esteja fora do intervalo
+    if (currentPage < 0) {
+      currentPage = 0;
+    } else if (currentPage >= totalPages) {
+      currentPage = totalPages - 1;
     }
 
     let startPage: number, endPage: number;
     if (totalPages <= 10) {
-      // less than 10 total pages so show all
-      startPage = 1;
-      endPage = totalPages;
+      // menos de 10 páginas totais, então mostre todas
+      startPage = 0;
+      endPage = totalPages - 1; // ajuste para começar do zero
     } else {
-      // more than 10 total pages so calculate start and end pages
+      // mais de 10 páginas totais, então calcule as páginas inicial e final
       if (currentPage <= 6) {
-        startPage = 1;
-        endPage = 10;
+        startPage = 0;
+        endPage = 9; // ajuste para mostrar 10 páginas começando do zero
       } else if (currentPage + 4 >= totalPages) {
-        startPage = totalPages - 9;
-        endPage = totalPages;
+        startPage = totalPages - 10; // ajuste para mostrar 10 páginas
+        endPage = totalPages - 1;
       } else {
         startPage = currentPage - 5;
         endPage = currentPage + 4;
       }
     }
 
-    // calculate start and end item indexes
-    let startIndex = (currentPage - 1) * pageSize;
+    // calcular os índices de início e fim dos itens
+    let startIndex = currentPage * pageSize;
     let endIndex = Math.min(startIndex + pageSize - 1, totalItems - 1);
 
-    // create an array of pages to ng-repeat in the pager control
-    let pages = Array.from(Array(endPage + 1 - startPage).keys()).map(i => startPage + i);
+    // criar um array de páginas para usar no controle de paginação
+    let pages = Array.from(Array((endPage + 1) - startPage).keys()).map(i => startPage + i);
 
-    // return object with all pager properties required by the view
+    // retornar o objeto com todas as propriedades de paginação necessárias para a visualização
     return {
       totalItems: totalItems,
       currentPage: currentPage,

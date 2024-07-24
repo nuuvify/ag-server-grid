@@ -5,8 +5,9 @@ export const isDate = (value: string) => {
   const regexData = /^\d{4}-\d{2}-\d{2}$/;
   const regexDataIso = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z$/;
   const regexDatesAPI = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d+$/;
+  const regexSimpleISO = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}$/;
 
-  if (typeof value === 'string' && (regexData.test(value) || regexDataIso.test(value) || regexDatesAPI.test(value))) {
+  if (typeof value === 'string' && (regexData.test(value) || regexDataIso.test(value) || regexDatesAPI.test(value) || regexSimpleISO.test(value))) {
     return true;
   } else {
     return false;

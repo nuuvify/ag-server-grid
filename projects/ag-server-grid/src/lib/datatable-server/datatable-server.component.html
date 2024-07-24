@@ -1,7 +1,21 @@
 <section class="table__body">
-  @if(exportCsv){
-  <button class="btn" (click)="exportAsXLSX()">Export CSV</button>
-  }
+  <div style="display: flex; justify-content:right; padding: 3px;   flex-wrap: wrap;">
+    @if(exportCsv){
+    <div style="margin-right: 5px;">
+      <button class="btn" (click)="exportAsXLSX()">Export csv</button>
+    </div>
+    }
+    @if(editable){
+    <div style="margin-right: 5px;">
+      <button [disabled]="itensSelecionados.length > 1" (click)="getRowEditSelect()" class="btn">Alterar</button>
+    </div>
+    }
+    @if(deletable){
+    <div style="margin-right: 5px;">
+      <button class="btn" (click)="getRowListDeleteSelect()">Excluir</button>
+    </div>
+    }
+  </div>
   <table id="catTable">
     <thead id="cat-table-header">
       <tr>
@@ -26,22 +40,36 @@
       </tr>
     </thead>
     <tbody id="cat-table-body">
-      @for (item of rowData | searchFilter: searchText; track item) {
-      <tr (dblclick)="getRow(item)">
+      @if(rowData.length === 0){
+      <tr>
+        <td [attr.colspan]="columnDefs.length" class="no-records-message">
+          <div class="message-container">
+            <p>Nenhum registro encontrado.</p>
+          </div>
+        </td>
+      </tr>
+      }@else{
+      @for (item of rowData | searchFilter: searchText; track item; let i = $index) {
+      <tr (dblclick)="getRow(item)" [class.selected]="isSelecionado(i)" (click)="selecionarLinha(i, $event)">
         @for (h of columnDefs; track h) {
-        <td>{{ item[h.field] | dateOrString }}</td>
-        }
-        @if (editable) {
-        <td><button class="btn" (click)="getRow(item)">Editar</button></td>
-        }
-        @if (deletable) {
-        <td><button class="btn" (click)="getRow(item)">Excluir</button></td>
+        <ng-container>
+          @if(!shouldSkipCell(h)){
+          <td title={{item[h.field]}}>{{ item[h.field] | dateOrString }}</td>
+          }
+          @if(h.showButton===true){
+          <td title={{h.configButton?.text}}><button class={{h.configButton?.class}}
+              (click)="buttonClick($event, item)"><i
+                class={{h.configButton?.icon}}></i>{{h.configButton?.text}}</button>
+          </td>
+          }
+        </ng-container>
         }
       </tr>
       }
+      }
     </tbody>
   </table>
-  @if (pagination) {
+  @if (pagination && rowData.length > 0) {
   <pagination-server [pager]="pager" [configPag]="configPag" (paginachange)="listagem($event)"
     (next)="nextLevel($event)" (prev)="prevLevel($event)" (setPage)="setPagination($event)"></pagination-server>
   }

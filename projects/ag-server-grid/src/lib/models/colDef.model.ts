@@ -9,4 +9,11 @@ export interface ColDef {
   headerValueGetter?: (obj: ColDef) => string;
   changeName?: string;
   sortBy?: boolean;
+  showButton?: boolean;
+  configButton?: ConfigButton
+}
+export interface ConfigButton {
+  text?: string;
+  icon?: string;
+  class?: string;
 }

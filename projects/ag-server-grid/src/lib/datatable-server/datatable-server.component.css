@@ -1,55 +1,111 @@
 table {
   border-spacing: 0;
   width: 100%;
-  }
-  th {
-    background: #848789;
-    background: linear-gradient(#4746487a, #5b636df7);
-    border-left: 1px solid rgba(0, 0, 0, 0.2);
-    border-right: 1px solid rgba(255, 255, 255, 0.1);
-    color: #fff;
-    padding: 8px;
-    text-align: center;
 }
-  th:first-child {
+
+th {
+  background: #848789;
+  background: linear-gradient(#4746487a, #5b636df7);
+  border-left: 1px solid rgba(0, 0, 0, 0.2);
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  color: #fff;
+  padding: 8px;
+  text-align: center;
+}
+
+th:first-child {
   border-top-left-radius: 4px;
   border-left: 0;
-  }
-  th:last-child {
+}
+
+th:last-child {
   border-top-right-radius: 4px;
   border-right: 0;
-  }
-  td {
+}
+
+td {
   border-right: 1px solid #c6c9cc;
   border-bottom: 1px solid #c6c9cc;
   padding: 8px;
-  }
-  td:first-child {
-  border-left: 1px solid #c6c9cc;
-  }
-  tr:first-child td {
-  border-top: 0;
-  }
-  tr:nth-child(even) td {
-  background:  rgba(255, 193, 7, 0.4);
-  }
-  tr:last-child td:first-child {
-  border-bottom-left-radius: 4px;
-  }
-  tr:last-child td:last-child {
-  border-bottom-right-radius: 4px;
-  }
+  text-align: center;
+}
 
-  .btn{
-    display: inline-block;
-    border-radius: 0.25rem;
-    position: relative;
-    padding: 0.3rem 0.3rem;
-    margin-left: -1px;
-    color: #6f736f;
-    text-decoration: none;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    cursor: pointer;
-    font-weight: 100;
-  }
+td:first-child {
+  border-left: 1px solid #c6c9cc;
+}
+
+tr:first-child td {
+  border-top: 0;
+}
+
+tr:nth-child(even) td {
+  background: rgba(255, 193, 7, 0.4);
+}
+
+tr:last-child td:first-child {
+  border-bottom-left-radius: 4px;
+}
+
+tr:last-child td:last-child {
+  border-bottom-right-radius: 4px;
+}
+
+td,
+th {
+  word-wrap: break-word;
+  /* Quebra a palavra longa para caber na célula */
+  max-width: 150px;
+  /* Ajuste conforme necessário */
+  overflow: hidden;
+  /* Esconde o excesso de conteúdo */
+  text-overflow: ellipsis;
+  /* Adiciona reticências para texto transbordado */
+  white-space: nowrap;
+  /* Evita a quebra de linha automática */
+}
+
+.btn {
+  display: inline-block;
+  border-radius: 0.25rem;
+  position: relative;
+  padding: 0.3rem 0.3rem;
+  margin-left: -1px;
+  color: #6f736f;
+  text-decoration: none;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  cursor: pointer;
+  font-weight: 100;
+}
+
+.selected {
+  background-color: skyblue;
+}
+
+.btn:disabled {
+  background-color: #b5b5b5;
+}
+
+.no-records-message {
+  text-align: center;
+  padding: 20px;
+  background-color: #f5f5f5;
+  color: #333;
+  font-size: 14px;
+  border: 1px solid #ddd;
+  border-top: none;
+}
+
+.no-records-message .message-container {
+  display: inline-block;
+  text-align: left;
+}
+
+.no-records-message p {
+  margin: 5px 0;
+  font-family: Arial, sans-serif;
+}
+
+.no-records-message strong {
+  font-size: 16px;
+}

@@ -38,24 +38,28 @@ export class PaginationServerComponent {
     this.setPagination(pageNo);
   }
 
-  //nextLevel() -> Leva para a próxima página
-  nextLevel(): void {
-    this.next.emit(this.configPag.currentPageNumber + 1);
-  }
 
   //prevLevel() -> Leva para uma página anterior
-  prevLevel(): void {
-    this.prev.emit(this.configPag.currentPageNumber - 1)
+  prevLevel() {
+    if (this.configPag.currentPageNumber > 0) {
+      this.prev.emit(this.configPag.currentPageNumber - 1)
+    }
+  }
+  //nextLevel() -> Leva para a próxima página
+  nextLevel() {
+    if (this.configPag.currentPageNumber < this.configPag.totalPages - 1) {
+      this.next.emit(this.configPag.currentPageNumber + 1);
+    }
   }
 
   //setPagination() -> Mostra os botões de paginação
-  setPagination(pageNo: number): void {
+  setPagination(pageNo: number) {
+    if (pageNo < 0 || pageNo >= this.configPag.totalPages) {
+      return;
+    }
+
     this.configPag.currentPageNumber = pageNo;
-    this.pager = this.pagerService.getPager(
-      this.configPag.totalRecordsCount,
-      pageNo,
-      this.configPag.recordsPerPage
-    );
+    this.pager = this.pagerService.getPager(this.configPag.totalRecordsCount, pageNo, this.configPag.recordsPerPage);
     this.setPage.emit(this.pager);
   }
 }
