@@ -2,18 +2,30 @@
   <div style="display: flex; justify-content:right; padding: 3px;   flex-wrap: wrap;">
     @if(exportCsv){
     <div style="margin-right: 5px;">
-      <button class="btn" (click)="exportAsXLSX()">Export csv</button>
+      <button *ngIf="exportCsv" class="{{configBtnCsv?.class !=undefined ? configBtnCsv?.class : 'button-component' }}"
+        (click)="exportAsXLSX()"><i class="{{configBtnCsv?.icon}}"></i>
+        Export CSV</button>
     </div>
     }
     @if(editable){
     <div style="margin-right: 5px;">
       <button [disabled]="itensSelecionados.length == 0 || itensSelecionados.length> 1" (click)="getRowEditSelect()"
-        class="btn">Alterar</button>
+        class="{{configBtnEdit?.class !=undefined ? configBtnEdit?.class : 'button-component' }}">
+        <i class="{{configBtnEdit?.icon}}"></i>
+        {{configBtnEdit?.text !=
+        undefined ?
+        configBtnEdit?.text:
+        'Alterar'}}</button>
     </div>
     }
     @if(deletable){
     <div style="margin-right: 5px;">
-      <button class="btn" (click)="getRowListDeleteSelect()">Excluir</button>
+      <button class="{{configBtnDelete?.class !=undefined ? configBtnDelete?.class : 'button-component' }}"
+        (click)="getRowListDeleteSelect()"> <i class="{{configBtnEdit?.icon}}"></i>
+        {{configBtnEdit?.text !=
+        undefined ?
+        configBtnEdit?.text:
+        'Excluir'}}</button>
     </div>
     }
   </div>
