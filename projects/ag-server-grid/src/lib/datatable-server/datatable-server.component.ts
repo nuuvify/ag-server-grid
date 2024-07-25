@@ -1,6 +1,6 @@
 import { CommonModule, DatePipe } from '@angular/common';
 import { Component, EventEmitter, Input, Output, SimpleChanges } from '@angular/core';
-import { ColDef } from '../models/colDef.model';
+import { ColDef, ConfigButton } from '../models/colDef.model';
 import { ConfigPagination } from '../models/configPagination.model';
 import { PaginationServerComponent } from './components/pagination-server/pagination-server.component';
 import { PagerService } from './components/pagination-server/service/pager.service';
@@ -29,6 +29,9 @@ export class DatatableServerComponent {
   @Input() public pagination: boolean = false;
   @Input() public exportCsv: boolean = false;
   @Input() public configPag!: ConfigPagination;
+  @Input() public configBtnEdit?: ConfigButton;
+  @Input() public configBtnDelete?: ConfigButton;
+  @Input() public configBtnCsv?: ConfigButton;
   @Output() public next: EventEmitter<number> = new EventEmitter();
   @Output() public prev: EventEmitter<number> = new EventEmitter();
   @Output() public setPage: EventEmitter<any> = new EventEmitter();
@@ -184,7 +187,9 @@ export class DatatableServerComponent {
 
   //getRowEditSelect() Quando o botão editar e uma linha estiver selecionada
   getRowEditSelect() {
-    this.getRowEdit.emit(this.rowEdit);
+    if (this.indicesSelecionados != undefined && this.indicesSelecionados != null) {
+      this.getRowEdit.emit(this.itensSelecionados[0]);
+    }
   }
 
   //getRowListDeleteSelect() Quando o botão excluir e varias linhas estiver selecionada

@@ -64,7 +64,7 @@ th {
   /* Evita a quebra de linha automática */
 }
 
-.btn {
+.button-component {
   display: inline-block;
   border-radius: 0.25rem;
   position: relative;
