@@ -42,32 +42,95 @@ Configurações necessárias para que a tabela seja renderizada corretamente:
      ![image](https://github.com/user-attachments/assets/42821729-c54c-4434-b6b5-3eb26eb58420)
  
 **Resultado depois de fazer a configuração do tbody:**
-![image](https://github.com/user-attachments/assets/50571f89-adf3-4dce-9ac3-2e94aa00d4fd)
+  ![image](https://github.com/user-attachments/assets/50571f89-adf3-4dce-9ac3-2e94aa00d4fd)
 
 
  ## 3 - Ativação do Botão "Editar" ou "Excluir" registros
-   * Dentro da tag `<datatable-server></datatable-server>` acrescente o `[editable]="true"` ou  [deletable]="true" para habilitar o botão de editar/excluir em todos os registros da tabela:
+   * Dentro da tag `<datatable-server></datatable-server>` acrescente o `[editable]="true"` ou  [deletable]="true" para habilitar o botão de editar/excluir na tabela:
   
    ![image](https://github.com/user-attachments/assets/fe307fb4-a55e-4884-8824-b348874c169c)
 
-  
-**Resultado depois de ativar a configuração `[editable]="true"` ou  `[deletable]="true"` :**
+
+  **Resultado depois de ativar a configuração `[editable]="true"` ou  `[deletable]="true"` :**
  
-   ![image](https://github.com/user-attachments/assets/9944695e-1319-4b92-878c-46e9ff990473)
-
-## **4 - Pegar valores da linha do botão editar da tabela**
-  * Crie um método para pegar os valores da linha editada como mostra no exemplo:
+   ![image](https://github.com/user-attachments/assets/ab948d06-fa76-4a0f-9762-4db43ec2ccf1)
+ 
+  * Para editar ou excluir, basta você selecionar a linha e apertar no botão desejado:
     
-     ![image](https://github.com/user-attachments/assets/18c1102b-ad8f-4a10-80a8-cae8b2cc6113)
-
-  * Declare na tag `<datatable-server></datatable-server>`  (getRowSelect) e chame o método que acabamos de criar:
+    ![image](https://github.com/user-attachments/assets/d4dd4f36-4631-4579-9577-b2ae56560323)
+  
+  * Para pegar a linha selecionada com ação editar, coloque na tag `<datatable-server></datatable-server>` a propriedade `(getRowEdit)="editar($event)"`
     
-     ![image](https://github.com/user-attachments/assets/ac8efce4-82c7-47dd-a547-8b63919f91e8)
+   
+    ![image](https://github.com/user-attachments/assets/e1071884-2b01-4087-9f82-dc9cff157775)
 
+    ![image](https://github.com/user-attachments/assets/5847034a-7ccf-4c44-9e31-171a9cd42c7f)
 
   **Resultado depois de fazer a configuração:**
+ 
+   ![image](https://github.com/user-attachments/assets/911b8cbf-eba4-4b0e-98ae-7da7253408d6)
+
+  * Para pegar a linha para excluir, basta seleciona a linha desejada e apertar excluir:
+  
+   ![image](https://github.com/user-attachments/assets/97213cf5-bf8a-438e-bed2-10e1b2c5f5b3)
+
+  * Para pegar a linha selecionada com ação excluir, coloque na tag `<datatable-server></datatable-server>` a propriedade `(getRowExcluir)="excluir($event)"`
+  
+   
+   ![image](https://github.com/user-attachments/assets/b7401f40-e619-4b29-bf5f-df77df74ba32)
+
+
+   ![image](https://github.com/user-attachments/assets/5388b96a-ea78-49d4-b84c-10207b4abbd7)
+
+ **Resultado depois de fazer a configuração:**
+   
+  ![image](https://github.com/user-attachments/assets/0a7d270b-aac4-4ced-992d-fb96250c0593)
+
+   * Caso deseje selecionar uma lista para excluir basta clicar **Ctrl + click** nas linhas desejadas 
+     
+   ![image](https://github.com/user-attachments/assets/3b766e25-1724-4002-84fa-294d9b0483c5)
     
-![image](https://github.com/user-attachments/assets/6e759e55-4390-444a-99e6-297e4e37646c)
+   * Ou apertar **Ctrl + Shift + click** e marcar até a linha atual:
+     
+   ![image](https://github.com/user-attachments/assets/8d601dd2-db54-4cd6-912d-2c28f3e348d1)
+
+   * Para pegar a lista de itens selecionados coloque na tag `<datatable-server></datatable-server>` a propriedade `(getListExcluir)="listExcluir($event)"`
+       
+     ![image](https://github.com/user-attachments/assets/973d032c-5b3c-4ee4-97ed-820776c0c5ec)
+   
+     ![image](https://github.com/user-attachments/assets/89259f9b-9d9f-470e-8138-d31ec94cc72d)
+
+     **Resultado depois de fazer a configuração:**
+ 
+      ![image](https://github.com/user-attachments/assets/9a7b8e81-78e3-4490-ac95-aeb4a22cadb8)
+     
+## 4 - Pegar linhas selecionadas na tabela:
+
+  * Caso necessite pegar 1 uma linha selecionada para fazer outro tipo de ação, basta colocar na tag `<datatable-server></datatable-server>`
+    `(getRowSelect)="getRow($event)"`  o evento será disparado assim que as linha for selecionada com double click:
+     
+   ![image](https://github.com/user-attachments/assets/f64d2ada-38af-453a-99fa-d7491e0396e4)
+
+   ![image](https://github.com/user-attachments/assets/21a007bf-28d4-4cf3-874e-2415d0329f41)
+
+  **Resultado depois de fazer a configuração:**
+ 
+   
+   ![image](https://github.com/user-attachments/assets/4cdc201b-3909-421c-858f-0f7906b4dffa)
+ 
+    
+   * Caso necessite pegar  uma lista selecionada para fazer outro tipo de ação, basta colocar na tag `<datatable-server></datatable-server>`
+      `(getListSelect)="getList($event)"`  o evento será disparado assim que as linha forem selecionadas:
+      
+     ![image](https://github.com/user-attachments/assets/25388354-39f2-4af7-a87a-29ad2f6b8954)
+     
+     ![image](https://github.com/user-attachments/assets/be365b4e-60e4-4d67-9047-c50efea7073b)
+
+    
+ **Resultado depois de fazer a configuração:**
+
+  
+  ![image](https://github.com/user-attachments/assets/b7434faf-3452-4808-ae46-c5e225bfd5fc)
 
 ## 5 - Tradução do Header da tabela ag-server-grid com ngx-translate de acordo com o idioma escolhido:  
 
@@ -288,4 +351,57 @@ Depois de fazer toda a configuração da paginação, você verá um resultado c
 
  **Obs:** Estes valores são fictícios, trocar conforme a sua tabela e seu teste unitário.
 
+## 13 - Botões na tabela:
+
+ * Dentro da variável colDef,  basta você colocar `showButton:true` e colocar as configurações necessárias do botão para personalização, siga o exemplo
+     a seguir:
+     
+    ![image](https://github.com/user-attachments/assets/ffaee4aa-0cd5-45e0-9c54-326ec9299b6b)
+
+**Resultado depois de fazer a configuração:**
+   
+  ![image](https://github.com/user-attachments/assets/4be57907-f29a-4ea8-a956-7d6dc6bc50b0)
+
+ **obs:** Para fazer a personalização dos botões você pode usar classes no bootstrap ou fazer a própria estilização e chamar a classe dentro da configuração class.
+
+ * Para recuperar a linha no click do botão dentro da tabela, basta colocar dentro da tag `<datatable-server></datatable-server>` `(getRowBtn)="getValuesBtn($event)"`
+   
+  ![image](https://github.com/user-attachments/assets/b7a022e2-0caf-449d-b11a-e1722be801ce)
+  
+  ![image](https://github.com/user-attachments/assets/47bc6cb3-f5c4-4e31-933d-5a6ff2f6fe50)
  
+**Resultado depois de fazer a configuração:**
+ 
+  ![image](https://github.com/user-attachments/assets/943a82a0-1f3c-410a-9492-2106ae875307)
+
+## 14 - Personalização dos botões: 
+      
+  * Para fazer as configurações dos botões que ficam acima da tabela, basta chamar as configurações abaixo dentro da tag `<datatable-server></datatable-server>`  `[configBtnEdit]="configBtnEdit()" ` `[configBtnDelete]="configBtnDelete()"` `[configBtnCsv]="configBtnCsv()"`: 
+    
+**Exemplo de personalização:**
+     
+        configBtnEdit():ConfigButton{
+          return {
+            text:'Editar',
+            icon: 'bi bi-pencil-square',
+            class: 'btn btn-warning'
+          }
+        }
+
+        configBtnDelete():ConfigButton{
+          return {
+            text:'Deletar',
+            icon: 'bi bi-x-circle',
+            class: 'btn btn-danger'
+          }
+        }
+  
+
+        configBtnCsv():ConfigButton{
+          return {
+            icon: 'bi bi-filetype-csv',
+            class: 'btn btn-ligh'
+          }
+        }
+    
+ **Obs:** O resultado será semelhante ao estilo dos botões da tabela  
