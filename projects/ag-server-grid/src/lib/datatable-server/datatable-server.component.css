@@ -28,6 +28,7 @@ td {
   border-bottom: 1px solid #c6c9cc;
   padding: 8px;
   text-align: center;
+  cursor: pointer;
 }
 
 td:first-child {
@@ -82,7 +83,7 @@ th {
   background-color: skyblue;
 }
 
-.btn:disabled {
+.btnDisabled:disabled {
   background-color: #b5b5b5;
 }
 

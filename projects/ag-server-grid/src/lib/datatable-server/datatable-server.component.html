@@ -10,7 +10,7 @@
     @if(editable){
     <div style="margin-right: 5px;">
       <button [disabled]="itensSelecionados.length == 0 || itensSelecionados.length> 1" (click)="getRowEditSelect()"
-        class="{{configBtnEdit?.class !=undefined ? configBtnEdit?.class : 'button-component' }}">
+        class="btnDisabled {{configBtnEdit?.class !=undefined ? configBtnEdit?.class : 'button-component' }}">
         <i class="{{configBtnEdit?.icon}}"></i>
         {{configBtnEdit?.text !=
         undefined ?
@@ -20,11 +20,12 @@
     }
     @if(deletable){
     <div style="margin-right: 5px;">
-      <button class="{{configBtnDelete?.class !=undefined ? configBtnDelete?.class : 'button-component' }}"
-        (click)="getRowListDeleteSelect()"> <i class="{{configBtnEdit?.icon}}"></i>
-        {{configBtnEdit?.text !=
+      <button [disabled]="itensSelecionados.length == 0"
+        class="btnDisabled {{configBtnDelete?.class !=undefined ? configBtnDelete?.class : 'button-component' }}"
+        (click)="getRowListDeleteSelect()"> <i class="{{configBtnDelete?.icon}}"></i>
+        {{configBtnDelete?.text !=
         undefined ?
-        configBtnEdit?.text:
+        configBtnDelete?.text:
         'Excluir'}}</button>
     </div>
     }
