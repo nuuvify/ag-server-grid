@@ -52,7 +52,7 @@ Configurações necessárias para que a tabela seja renderizada corretamente:
 
   **Resultado depois de configurar o Headers:**
      
-![image](https://github.com/user-attachments/assets/8c857c2c-5dc4-45aa-9e00-8909df1c3539)
+ ![image](https://github.com/user-attachments/assets/119afbd6-da17-4b26-927e-49f5f92b01ec)
 
    ## 2- Body Table
    Para renderizar o tbody do ag-server-grid é necessário realizar os seguintes passos:
@@ -73,7 +73,8 @@ Configurações necessárias para que a tabela seja renderizada corretamente:
      ![image](https://github.com/user-attachments/assets/42821729-c54c-4434-b6b5-3eb26eb58420)
  
 **Resultado depois de fazer a configuração do tbody:**
-  ![image](https://github.com/user-attachments/assets/50571f89-adf3-4dce-9ac3-2e94aa00d4fd)
+  
+   ![image](https://github.com/user-attachments/assets/468f651b-8678-4945-87a7-af6d187c7517)
 
 
  ## 3 - Ativação do Botão "Editar" ou "Excluir" registros
@@ -206,11 +207,12 @@ Configurações necessárias para que a tabela seja renderizada corretamente:
   **Resultado depois de fazer a configuração:**
   -    Quando apertamos o botão para traduzir para o Português:
   
- ![image](https://github.com/user-attachments/assets/777d3ad2-56a0-4c19-83b3-019636831ec0)
+   ![image](https://github.com/user-attachments/assets/41f3223b-c9f2-4bff-90e8-816b5ca190d7)
 
   -    Quando apertamos o botão para traduzir para o Inglês:
  
- ![image](https://github.com/user-attachments/assets/1473ea03-78fe-4c5e-998c-14f89d90465f)
+  ![image](https://github.com/user-attachments/assets/b15d1697-6943-4a76-8afd-81ad6deb1bbb)
+
 ## 6 - Ordenação por coluna:
  Na variável columnDef onde estão declarada as nossas colunas, basta colocar a propriedade sortBy:true na coluna que deseja ordenar ao carregar os dados:
   
@@ -221,7 +223,9 @@ Configurações necessárias para que a tabela seja renderizada corretamente:
 ![image](https://github.com/user-attachments/assets/7b199a33-45ea-4924-87d6-d8df9e7af714)
 ## 8 - Formatação de Datas:
   Não é necessário fazer nenhuma configuração para formatar a data, pois o componente tem inteligência para identificar o formato de uma data e o formato de uma string. Sendo assim quando for identificado uma data, o componente irá formatar automaticamente:
-![image](https://github.com/user-attachments/assets/0e99cd01-cbfc-46dd-9fb5-f75fd4916612)
+
+  
+  ![image](https://github.com/user-attachments/assets/3661b65f-c14b-474c-96e2-4443e9bc037d)
 
 ## 9 - Exportar tabela para CSV:
   Basta ir no HTML e acionar na tag `<datatable-server></datatable-server>` [exportCsv]="true"  como demonstrado no exemplo abaixo:
@@ -316,7 +320,7 @@ Obs: O botão **Export CSV** gera o arquivo apenas com as informações que est�
  
 Depois de fazer toda a configuração da paginação, você verá um resultado como esse:
 
-  ![image](https://github.com/user-attachments/assets/03303c4f-55b2-479e-b2f1-e4c18c2f0f66)
+  ![image](https://github.com/user-attachments/assets/9120ac80-41e3-4723-acbc-7f7fd5e07828)
 
 
 ## 11 - Campo de Pesquisa:
@@ -435,4 +439,5 @@ Depois de fazer toda a configuração da paginação, você verá um resultado c
           }
         }
     
- **Obs:** O resultado será semelhante ao estilo dos botões da tabela  
+
+  ![image](https://github.com/user-attachments/assets/5f174b7f-05fc-4803-8048-7bcc10a8da25)
