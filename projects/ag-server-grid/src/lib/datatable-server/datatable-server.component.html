@@ -55,7 +55,7 @@
       }@else{
         @if(paginationServer && !pagination){
       @for (item of rowData | searchFilter: searchText; track item; let i = $index) {
-      <tr (dblclick)="getRow(item)" [class.selected]="isSelecionado(i)" (click)="selecionarLinha(i, $event)">
+      <tr (dblclick)="getRow(item)" [class.selected]="isSelecionado(i)" (click)="getRow(item)" (click)="selecionarLinha(i, $event)">
         @for (h of columnDefs; track h) {
         <ng-container>
           @if(!shouldSkipCell(h)){
@@ -74,7 +74,7 @@
     }
       @if(pagination && !paginationServer){
         @for (item of paginatedData | searchFilter: searchText; track item; let i = $index) {
-          <tr (dblclick)="getRow(item)" [class.selected]="isSelecionado(i)" (click)="selecionarLinha(i, $event)">
+          <tr (dblclick)="getRow(item)" [class.selected]="isSelecionado(i)" (click)="getRow(item)" (click)="selecionarLinha(i, $event)">
             @for (h of columnDefs; track h) {
             <ng-container>
               @if(!shouldSkipCell(h)){
