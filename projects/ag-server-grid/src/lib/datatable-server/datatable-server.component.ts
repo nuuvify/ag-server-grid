@@ -20,13 +20,16 @@ export class DatatableServerComponent {
   public sortOrder = 1;
   public sortedColumn!: string;
   public sortProperty!: string;
+  public currentPage:number = 1;
+  @Input() public pageSize:number = 5;
+  @Input() public pagination: boolean = false;
   @Input() public pager: any = {};
   @Input() public rowData: any = [];
   @Input() public columnDefs!: ColDef[];
   @Input() public editable!: boolean;
   @Input() public deletable!: boolean;
   @Input() public searchText!: string;
-  @Input() public pagination: boolean = false;
+  @Input() public paginationServer: boolean = false;
   @Input() public exportCsv: boolean = false;
   @Input() public configPag!: ConfigPagination;
   @Input() public configBtnEdit?: ConfigButton;
@@ -205,5 +208,25 @@ export class DatatableServerComponent {
   buttonClick(event: Event, item: any): void {
     event.stopPropagation();
     this.getRowBtn.emit(item);
+  }
+
+  //Pagination Local
+  get totalPages(): number {
+    return Math.ceil(this.rowData.length / this.pageSize);
+  }
+
+  // Obtém os dados da página atual
+  get paginatedData() {
+    const start = (this.currentPage - 1) * this.pageSize;
+    const end = start + this.pageSize;
+    return this.rowData.slice(start, end);
+  }
+
+  // Mudar de página
+  changePage(page: number) {
+    if (page > 0 && page <= this.totalPages) {
+      this.clearMarkRowsTable();
+      this.currentPage = page;
+    }
   }
 }
