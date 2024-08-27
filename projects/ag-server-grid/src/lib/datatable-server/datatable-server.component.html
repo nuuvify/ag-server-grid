@@ -53,6 +53,7 @@
         </td>
       </tr>
       }@else{
+        @if(paginationServer && !pagination){
       @for (item of rowData | searchFilter: searchText; track item; let i = $index) {
       <tr (dblclick)="getRow(item)" [class.selected]="isSelecionado(i)" (click)="selecionarLinha(i, $event)">
         @for (h of columnDefs; track h) {
@@ -70,11 +71,38 @@
         }
       </tr>
       }
+    }
+      @if(pagination && !paginationServer){
+        @for (item of paginatedData | searchFilter: searchText; track item; let i = $index) {
+          <tr (dblclick)="getRow(item)" [class.selected]="isSelecionado(i)" (click)="selecionarLinha(i, $event)">
+            @for (h of columnDefs; track h) {
+            <ng-container>
+              @if(!shouldSkipCell(h)){
+              <td title={{item[h.field]}}>{{ item[h.field] | dateOrString }}</td>
+              }
+              @if(h.showButton===true){
+              <td title={{h.configButton?.text}}><button class={{h.configButton?.class}}
+                  (click)="buttonClick($event, item)"><i
+                    class={{h.configButton?.icon}}></i>{{h.configButton?.text}}</button>
+              </td>
+              }
+            </ng-container>
+            }
+          </tr>
+          }
       }
+    }
     </tbody>
   </table>
-  @if (pagination && rowData.length > 0 && (configPag != undefined && configPag.totalPages > 1)) {
+  @if (paginationServer && rowData.length > 0 && (configPag != undefined && configPag.totalPages > 1)) {
   <pagination-server [pager]="pager" [configPag]="configPag" (paginachange)="listagem($event)"
     (next)="nextLevel($event)" (prev)="prevLevel($event)" (setPage)="setPagination($event)"></pagination-server>
+  }
+  @if (pagination && rowData.length > 0) {
+    <div class="pagination">
+      <button (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1">&laquo; Previous</button>
+      <span>Page {{ currentPage }} of {{ totalPages }}</span>
+      <button (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalPages">Next &raquo;</button>
+    </div>
   }
 </section>

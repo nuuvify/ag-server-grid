@@ -110,3 +110,53 @@ th {
 .no-records-message strong {
   font-size: 16px;
 }
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.pagination button {
+  background-color: transparent;
+  color: #007bff;
+  border: 1px solid #007bff;
+  padding: 8px 16px;
+  margin: 0 5px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 400;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pagination button:disabled {
+  color: #cccccc;
+  border-color: #cccccc;
+  cursor: not-allowed;
+}
+
+.pagination button:hover:not(:disabled) {
+  background-color: #007bff;
+  color: #ffffff;
+}
+
+.pagination button:active:not(:disabled) {
+  background-color: #0056b3;
+  color: #ffffff;
+}
+
+.pagination span {
+  font-size: 14px;
+  margin: 0 10px;
+}
+
+/* Adicional: ícones para botões de navegação */
+.pagination .icon {
+  font-size: 14px;
+  margin: 0 5px;
+}
