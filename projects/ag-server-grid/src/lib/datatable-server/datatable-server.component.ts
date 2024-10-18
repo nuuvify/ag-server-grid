@@ -59,6 +59,9 @@ export class DatatableServerComponent {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
+    if(changes['rowData']){
+      this.clearMarkRowsTable();
+   }
     this.initializeColumns();
     if (changes['columnDefs'] || changes['rowData']) {
       if (this.columnDefs && this.rowData) {
