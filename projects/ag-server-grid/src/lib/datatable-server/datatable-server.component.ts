@@ -28,6 +28,7 @@ export class DatatableServerComponent {
   @Input() public columnDefs!: ColDef[];
   @Input() public editable!: boolean;
   @Input() public deletable!: boolean;
+  @Input() public changeAllList!: boolean;
   @Input() public searchText!: string;
   @Input() public paginationServer: boolean = false;
   @Input() public exportCsv: boolean = false;
@@ -50,6 +51,7 @@ export class DatatableServerComponent {
   public indicesSelecionados: Set<number> = new Set<number>();
   public ultimaLinhaSelecionadaIndex: number | null = null;
   public itensSelecionados: any[] = [];
+  public allSelected: boolean = false;
 
   constructor(private excelService: ExcelService) { }
 
@@ -231,5 +233,23 @@ export class DatatableServerComponent {
       this.clearMarkRowsTable();
       this.currentPage = page;
     }
+  }
+  alternarSelecaoTodasLinhas(): void {
+    if (this.allSelected) {
+      // Desmarcar todas as linhas
+      this.indicesSelecionados.clear();
+      this.allSelected = false;
+    } else {
+      // Marcar todas as linhas
+      this.indicesSelecionados.clear();
+      this.rowData.forEach((_: any, index: number) => {
+        this.indicesSelecionados.add(index);
+      });
+      this.allSelected = true;
+    }
+  
+    // Atualiza os itens selecionados e emite a lista de seleção
+    this.itensSelecionados = Array.from(this.indicesSelecionados).map(index => this.rowData[index]);
+    this.getListSelect.emit(this.itensSelecionados);  // Emite os itens selecionados
   }
 }
