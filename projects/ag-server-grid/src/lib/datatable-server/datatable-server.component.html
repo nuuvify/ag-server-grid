@@ -1,35 +1,37 @@
 <section class="table__body">
-  <div style="display: flex; justify-content:right; padding: 3px;   flex-wrap: wrap;">
+  <div style="display: flex; justify-content:right; padding: 3px; flex-wrap: wrap;">
     @if(exportCsv){
     <div style="margin-right: 5px;">
-      <button *ngIf="exportCsv" class="{{configBtnCsv?.class !=undefined ? configBtnCsv?.class : 'button-component' }}"
-        (click)="exportAsXLSX()"><i class="{{configBtnCsv?.icon}}"></i>
-        Export CSV</button>
+      <button *ngIf="exportCsv" class="{{configBtnCsv?.class != undefined ? configBtnCsv?.class : 'button-component' }}"
+        (click)="exportAsXLSX()"><i class="{{configBtnCsv?.icon}}"></i>Export CSV</button>
     </div>
     }
     @if(editable){
     <div style="margin-right: 5px;">
-      <button [disabled]="itensSelecionados.length == 0 || itensSelecionados.length> 1" (click)="getRowEditSelect()"
-        class="btnDisabled {{configBtnEdit?.class !=undefined ? configBtnEdit?.class : 'button-component' }}">
+      <button [disabled]="itensSelecionados.length == 0 || itensSelecionados.length > 1" (click)="getRowEditSelect()"
+        class="btnDisabled {{configBtnEdit?.class != undefined ? configBtnEdit?.class : 'button-component' }}">
         <i class="{{configBtnEdit?.icon}}"></i>
-        {{configBtnEdit?.text !=
-        undefined ?
-        configBtnEdit?.text:
-        'Alterar'}}</button>
+        {{configBtnEdit?.text != undefined ? configBtnEdit?.text : 'Alterar'}}</button>
     </div>
     }
     @if(deletable){
     <div style="margin-right: 5px;">
       <button [disabled]="itensSelecionados.length == 0"
-        class="btnDisabled {{configBtnDelete?.class !=undefined ? configBtnDelete?.class : 'button-component' }}"
+        class="btnDisabled {{configBtnDelete?.class != undefined ? configBtnDelete?.class : 'button-component' }}"
         (click)="getRowListDeleteSelect()"> <i class="{{configBtnDelete?.icon}}"></i>
-        {{configBtnDelete?.text !=
-        undefined ?
-        configBtnDelete?.text:
-        'Excluir'}}</button>
+        {{configBtnDelete?.text != undefined ? configBtnDelete?.text : 'Excluir'}}</button>
+    </div>
+    }
+    @if(changeAllList){
+      <div style="margin-right: 5px;">
+    <button class="{{configBtnSelectAll?.class != undefined ? configBtnSelectAll?.class : 'button-component'}}"
+      (click)="alternarSelecaoTodasLinhas()">
+      <i class="{{configBtnSelectAll?.icon}}"></i> {{ allSelected ? 'Deselecionar Todas' : 'Selecionar Todas' }}
+    </button>
     </div>
     }
   </div>
+  
   <table id="catTable">
     <thead id="cat-table-header">
       <tr>
@@ -43,6 +45,7 @@
         }
       </tr>
     </thead>
+    
     <tbody id="cat-table-body">
       @if(rowData.length === 0){
       <tr>
@@ -53,29 +56,13 @@
         </td>
       </tr>
       }@else{
-        @if(paginationServer && !pagination){
-      @for (item of rowData | searchFilter: searchText; track item; let i = $index) {
-      <tr (dblclick)="getRow(item)" [class.selected]="isSelecionado(i)" (click)="getRow(item)" (click)="selecionarLinha(i, $event)">
-        @for (h of columnDefs; track h) {
-        <ng-container>
-          @if(!shouldSkipCell(h)){
-          <td title={{item[h.field]}}>{{ item[h.field] | dateOrString }}</td>
-          }
-          @if(h.showButton===true){
-          <td title={{h.configButton?.text}}><button class={{h.configButton?.class}}
-              (click)="buttonClick($event, item)"><i
-                class={{h.configButton?.icon}}></i>{{h.configButton?.text}}</button>
-          </td>
-          }
-        </ng-container>
-        }
-      </tr>
-      }
-    }
-      @if(pagination && !paginationServer){
-        @for (item of paginatedData | searchFilter: searchText; track item; let i = $index) {
-          <tr (dblclick)="getRow(item)" [class.selected]="isSelecionado(i)" (click)="getRow(item)" (click)="selecionarLinha(i, $event)">
-            @for (h of columnDefs; track h) {
+      
+      <!-- Se paginação estiver desativada, renderiza todos os registros -->
+      @if(!pagination){
+        @for (item of rowData | searchFilter: searchText; track item; let i = $index) {
+        <tr (dblclick)="getRow(item)" [class.selected]="isSelecionado(i)" (click)="getRow(item)"
+          (click)="selecionarLinha(i, $event)">
+          @for (h of columnDefs; track h) {
             <ng-container>
               @if(!shouldSkipCell(h)){
               <td title={{item[h.field]}}>{{ item[h.field] | dateOrString }}</td>
@@ -87,22 +74,46 @@
               </td>
               }
             </ng-container>
-            }
-          </tr>
           }
+        </tr>
+        }
       }
-    }
+      
+      <!-- Se a paginação estiver ativada, renderiza os dados paginados -->
+      @if(pagination && !paginationServer){
+        @for (item of paginatedData | searchFilter: searchText; track item; let i = $index) {
+        <tr (dblclick)="getRow(item)" [class.selected]="isSelecionado(i)" (click)="getRow(item)"
+          (click)="selecionarLinha(i, $event)">
+          @for (h of columnDefs; track h) {
+            <ng-container>
+              @if(!shouldSkipCell(h)){
+              <td title={{item[h.field]}}>{{ item[h.field] | dateOrString }}</td>
+              }
+              @if(h.showButton===true){
+              <td title={{h.configButton?.text}}><button class={{h.configButton?.class}}
+                  (click)="buttonClick($event, item)"><i
+                    class={{h.configButton?.icon}}></i>{{h.configButton?.text}}</button>
+              </td>
+              }
+            </ng-container>
+          }
+        </tr>
+        }
+      }
+      }
     </tbody>
   </table>
+
+  <!-- Exibe a paginação apenas quando ela estiver ativada -->
   @if (paginationServer && rowData.length > 0 && (configPag != undefined && configPag.totalPages > 1)) {
   <pagination-server [pager]="pager" [configPag]="configPag" (paginachange)="listagem($event)"
     (next)="nextLevel($event)" (prev)="prevLevel($event)" (setPage)="setPagination($event)"></pagination-server>
   }
   @if (pagination && rowData.length > 0) {
-    <div class="pagination">
-      <button (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1">&laquo; Previous</button>
-      <span>Page {{ currentPage }} of {{ totalPages }}</span>
-      <button (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalPages">Next &raquo;</button>
-    </div>
+  <div class="pagination">
+    <button (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1">&laquo; Previous</button>
+    <span>Page {{ currentPage }} of {{ totalPages }}</span>
+    <button (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalPages">Next &raquo;</button>
+  </div>
   }
 </section>
