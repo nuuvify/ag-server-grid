@@ -21,6 +21,11 @@ export class DatatableServerComponent {
   public sortedColumn!: string;
   public sortProperty!: string;
   public currentPage:number = 1;
+  public rowEdit!: any;
+  public itensSelecionados: any[] = [];
+  public allSelected: boolean = false;
+  public indicesSelecionados: Set<number> = new Set<number>();
+  public ultimaLinhaSelecionadaIndex: number | null = null;
   @Input() public pageSize:number = 5;
   @Input() public pagination: boolean = false;
   @Input() public pager: any = {};
@@ -46,12 +51,6 @@ export class DatatableServerComponent {
   @Output() public getRowBtn: EventEmitter<Object> = new EventEmitter();
   @Output() public getListExcluir: EventEmitter<Object> = new EventEmitter();
   @Output() public getRowExcluir: EventEmitter<Object> = new EventEmitter();
-
-  public rowEdit!: any;
-  public indicesSelecionados: Set<number> = new Set<number>();
-  public ultimaLinhaSelecionadaIndex: number | null = null;
-  public itensSelecionados: any[] = [];
-  public allSelected: boolean = false;
 
   constructor(private excelService: ExcelService) { }
 
