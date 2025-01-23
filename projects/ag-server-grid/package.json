@@ -1,6 +1,6 @@
 {
   "name": "ag-server-grid",
-  "version": "0.0.3",
+  "version": "1.0.0",
   "license": "Apache-2.0",
   "description": "Data Grid for Angular / TypeScript, with several customizable features and server side pagination.",
   "engines": {

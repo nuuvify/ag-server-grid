@@ -243,7 +243,7 @@ Configurações necessárias para que a tabela seja renderizada corretamente:
 Obs: O botão **Export CSV** gera o arquivo apenas com as informações que estão na tela, caso precise gerar o arquivo com todos os registros da base de dados, opte sempre fazer pelo back-end.
 
 ## 10 - Paginação Server Side:
-* Para ativar a paginação basta ir até a tag `<datatable-server></datatable-server>` e acrescentar o `[pagination]="true"`
+* Para ativar a paginação basta ir até a tag `<datatable-server></datatable-server>` e acrescentar o `[paginationServer]="true"`
 ![image](https://github.com/user-attachments/assets/29922bca-cb62-4c88-ad76-7aebc0b63bf6)
 * Implemente essa variáveis:
 
@@ -442,5 +442,12 @@ Depois de fazer toda a configuração da paginação, você verá um resultado c
 
   ![image](https://github.com/user-attachments/assets/5f174b7f-05fc-4803-8048-7bcc10a8da25)
 
+## 15 - Paginação Local:
+
+* Para ativar a paginação local basta ir até a tag `<datatable-server></datatable-server>` e acrescentar o `[pagination]="true"`
+  
+Resultado depois de aplicar a configuração:
+![image](https://github.com/user-attachments/assets/4d068520-1d65-447b-acaa-ba315810da87)
 
   
+
