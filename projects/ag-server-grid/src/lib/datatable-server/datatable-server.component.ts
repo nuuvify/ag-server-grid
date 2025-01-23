@@ -41,6 +41,7 @@ export class DatatableServerComponent {
   @Input() public configBtnEdit?: ConfigButton;
   @Input() public configBtnDelete?: ConfigButton;
   @Input() public configBtnCsv?: ConfigButton;
+  @Input() public configBtnSelectAll?: ConfigButton;
   @Output() public next: EventEmitter<number> = new EventEmitter();
   @Output() public prev: EventEmitter<number> = new EventEmitter();
   @Output() public setPage: EventEmitter<any> = new EventEmitter();
