@@ -7,7 +7,8 @@
   <nav class="pages">
     <ul class="pagination">
       <li [ngClass]="{ disabled: configPag.currentPageNumber <= 0 }" class="page-item">
-        <a href="javascript:;" class="page-link" (click)="prevLevel()">Previous</a>
+        <a href="javascript:;" class="page-link" (click)="prevLevel()"><span style="font-size:large;">↤</span> 
+        </a>
       </li>
 
       @for (page of pager.pages; track trackByFn($index, page)) {
@@ -18,7 +19,7 @@
       }
 
       <li [ngClass]="{ disabled: configPag.currentPageNumber >= configPag.totalPages - 1 }" class="page-item">
-        <a class="page-link" href="javascript:;" (click)="nextLevel()">Next</a>
+        <a class="page-link" href="javascript:;" (click)="nextLevel()"><span style="font-size:large;">↦</span></a>
       </li>
     </ul>
   </nav>
