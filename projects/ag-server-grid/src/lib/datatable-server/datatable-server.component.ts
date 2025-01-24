@@ -106,6 +106,7 @@ export class DatatableServerComponent {
   }
 
   clearMarkRowsTable() {
+    this.allSelected = false;
     this.ultimaLinhaSelecionadaIndex = 0;
     this.itensSelecionados = [];
     this.indicesSelecionados.clear();
